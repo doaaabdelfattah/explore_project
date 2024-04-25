@@ -1,0 +1,377 @@
+/* Variables */
+:root {
+  --main-color: #a26329;
+  --LightGrayColor: #dedede;
+  --DarkGrayColor: #999;
+}
+
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  /* background-color: aquamarine; */
+}
+
+ul {
+  list-style: none;
+}
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+/* Small */
+
+@media (max-width: 768px)  {
+  .container {
+    width: 755px;
+  }
+ 
+}
+/* Medium */
+@media (min-width: 992) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* Header */
+header {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  /* background-color: var(--LightGrayColor); */
+}
+header img {
+  height: 50px;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 30px;
+  height: 90px;
+  /* background-color: blue; */
+}
+
+header nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+header nav .toggle-menu {
+  font-size: 22px;
+}
+
+@media (min-width: 768px) {
+  header nav .toggle-menu {
+    display: none;
+  }
+}
+
+header nav ul {
+  display: flex;
+  margin-right: 45px;
+  /* width: 60%; */
+}
+@media (max-width: 768px) {
+  header nav ul {
+    display: none;
+  }
+  header nav button {
+    display: none;
+  }
+  header nav .toggle-menu:hover + ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80%;
+    left: 0px;
+    width: 100%;
+    background-color: rgba(255, 255, 255);
+    z-index: 3;
+  }
+  header nav .toggle-menu:hover + ul li a {
+    padding: 25px;
+  }
+}
+
+header nav ul li a {
+  padding: 40px 10px;
+  display: block;
+  color: black;
+  text-decoration: none;
+  font-size: 15px;
+  transition: 0.2s;
+  width: 90%;
+  margin-left: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+header nav ul li a:hover {
+  color: var(--main-color);
+}
+
+header nav button {
+  width: 120px;
+  padding: 12px 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+header nav button:hover {
+  background-color: var(--main-color);
+  box-shadow: 0px 15px 20px rgba(144, 148, 147, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+header nav button:active {
+  transform: translateY(-0.5px);
+}
+
+/* //////////////////// Landing Section /////////////////////// */
+
+.landing {
+  min-height: 100vh;
+  background-color: var(--main-color);
+  background-image: url("../images/luca-bravo-O453M2Liufs-unsplash.jpg");
+  background-size: cover;
+}
+.landing .container {
+  display: flex;
+}
+.landing .overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Ensure the overlay is above the content */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.8),
+    rgba(0, 0, 0, 0)
+  ); /* Define your gradient */
+}
+
+.landing .text {
+  position: absolute;
+  top: 42%;
+  z-index: 2;
+  transform: translateY(-80%);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.landing .text .content h2 {
+  font-size: 50px;
+  letter-spacing: 2px;
+  line-height: 66px;
+}
+.landing .text .content p {
+  font-weight: 300;
+}
+
+
+
+/* Search Bar */
+
+.landing .search-bar {
+  background-color: #fff;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.05);
+  height: 80px;
+  border-radius: 40px;
+  position: absolute;
+  top: 60%;
+  z-index: 2;
+  transform: translateY(-80%);
+  display: flex;
+  justify-content: flex-end;
+}
+.landing form {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+}
+.landing .col-1,
+.col-2, .col-3 {
+  margin: 10px;
+  padding: 10px;
+
+}
+
+
+.landing input,
+select {
+  border: 0 none;
+  outline: none;
+}
+.landing .col-2 {
+  border-left: 1px solid var(--LightGrayColor);
+}
+
+.landing button {
+  width: 40px; /* Adjust button width */
+  height: 40px; /* Adjust button height */
+  border-radius: 50%; /* Make button circular */
+  background-color: var(--main-color); /* Button background color */
+  color: #fff; /* Text color */
+  border: none; /* Remove border */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing i {
+  margin-right: 10px;
+  font-size: 20px;
+  color: var(--DarkGrayColor)
+}
+.landing button:hover {
+  background-color: var(--LightGrayColor); 
+}
+
+.landing button .fa {
+  font-size: 18px; /* Adjust icon size */
+}
+
+input::placeholder {
+  font-weight: 300;
+  font-size: 15px;
+}
+.landing select {
+  font-weight: 300;
+  font-size: 15px;
+  margin-left: 13px;
+}
+
+
+
+/* ////////////////// Products Section /////////////// */
+
+.packages h2 {
+  text-align: center;
+  margin: 50px;
+}
+
+
+.packages {
+  /* background-color: hsl(30, 60%, 90%); */
+}
+
+.packages .container {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+
+}
+.product-card {
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 12px;
+  padding: 10px;
+  min-height: 20em;
+  width: 30%;
+  overflow: hidden;
+  margin: 10px;
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.1);
+}
+.product-image img{
+  width: 100%;
+  margin: 2px;
+  border-radius: 12px;
+}
+.product-card:hover .product-image {
+  opacity: 0.9;
+}
+.product-info {
+  padding: 8px;
+}
+
+.product-info .location {
+  font-size: 20px;
+  text-transform:capitalize;
+
+}
+
+.location span {
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 4px;
+  color: var(--DarkGrayColor);
+}
+.product-info .booking {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+
+.packages button {
+  width: 120px;
+  padding: 12px 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: var(--LightGrayColor);
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.product-info .description {
+  font-weight: 300;
+  font-size: 0.9em;
+  line-height: normal;
+  margin: 20px 0px
+
+}
+.booking .price {
+  font-size: 1.2em;
+}
+
