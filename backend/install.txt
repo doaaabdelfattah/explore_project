@@ -1,0 +1,8 @@
+pip install SQLAlchemy
+pip install python-dotenv
+pip install pyodbc
+pip install -U wheel
+pip install mysql-connector-python
+pip install pymysql
+pip install MySQL-python
+pip install cryptography
