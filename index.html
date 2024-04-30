@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Explore | Home Page</title>
     <!-- Main CSS files -->
+    <!-- Bootstrap style -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Render All elements normally -->
     <link rel="stylesheet" href="css/normalize.css" />
-    <!-- Font Awesome icons -->
+    <!-- Font Awesome icons-->
     <link rel="stylesheet" href="css/all.min.css" />
     <!-- Google Font (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,159 +24,248 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Hero Section -->
+    <div class="overlay-home">
+        <div class="overlay-gradient"></div>
         <div class="container">
-            <img class="logo" src="images/logo.png" alt="">
-            <nav>
-                <i class="fa-solid fa-bars toggle-menu"></i>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Destinations</a></li>
-                    <li><a href="#">contact</a></li>
-                </ul>
-                <button> Book now </button>
+            <!-- Navigation Bar (Fixed on all pages) -->
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo.png" height="50px" alt="logo" loading="lazy"></a>
+                <a href="#nav-menu" data-toggle="collapse" class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+                <div id="nav-menu" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about-us" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Destinations</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
             </nav>
-        </div>
-    </header>
-    <div class="landing">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="text">
-                <div class="content">
-                    <h2> Find the Perfect <br />
+            <!-- Hero Section -->
+            <div class="hero hero-text">
+                <div class="text">
+                    <h1> Find the Perfect <br />
                         destination with us.
-                    </h2>
+                    </h1>
                     <p>
                         Plan & book your perfect trip
                     </p>
                 </div>
             </div>
-            <div class="search-bar">
-                <form id="search-form" class="row gx-3 align-items-center" role="search" method="get">
-                    <div class="col-1">
-                        <!-- Destination field -->
-                        <div class="input-group mb-3 mb-lg-0">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <input type="text" name="keywords" id="keywords" class="form-control" value=""
-                                placeholder="Your Destination">
-                        </div>
+        </div>
+    </div>
+    <!-- Popular packages -->
+    <div class="container packages">
+        <h1 class="section-title"> Featured Packages </h1>
+        <div class="row row-cols-md-3 g-4 py-5">
+            <!-- Card Nu. 1 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
+                <div class="card h-100 product-card">
+                    <img src="images/rome.jpg" class="card-img-top product-image">
+                    <div class="card-body">
+                        <h5 class="card-title"> <strong>Italy </strong> </h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
                     </div>
-                    <div class="col-2">
-                        <!-- Category field -->
-                        <div class="input-group">
-                            <!-- <span class="input-group-text">
-                                <i class="fa-solid fa-list"></i>
-                            </span> -->
-                            <select name="categories" id="categories">
-                                <option value="0">All Categories</option>
-                                <option value="15">Adventure Travel</option>
-                                <option value="16">Family Travel</option>
-                                <option value="17">Luxury Travel</option>
-                                <option value="18">Cultural and Heritage</option>
-                            </select>
-                        </div>
+                    <div class="row justify-content-around mb-3 align-items-center">
+
+                        <button class="btn submit-btn"> Details</button>
+                        <h3 class="mb-0"> 300$</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Nu. 2 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
+                <div class="card h-100 product-card">
+                    <img src="images/egypt.jpg" class="card-img-top product-image">
+                    <div class="card-body">
+                        <h5 class="card-title"> <strong>Egypt </strong> </h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="row justify-content-around mb-3 align-items-center">
+
+                        <button class="btn submit-btn"> Details</button>
+                        <h3 class="mb-0"> 300$</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Nu. 3 -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
+                <div class="card h-100 product-card">
+                    <img src="images/france.jpg" class="card-img-top product-image">
+                    <div class="card-body">
+                        <h5 class="card-title"> <strong>France </strong> </h5>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                            additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="row justify-content-around mb-3 align-items-center">
+
+                        <button class="btn submit-btn"> Details</button>
+                        <h3 class="mb-0"> 300$</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="about-section">
+        <h1 class="section-title"> Why Explore ? </h1>
+        <div class="container">
+            <div class="row" id="about-us">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <img src="images/logo.png" height="50px" alt="logo" loading="lazy"></a>
+            <div class="row">
+                <div class="col-4">
+                    <p>
+                        Let's Get Social
+                    </p>
+                    <div class="social-icons">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-square-instagram"></i>
+                        <i class="fa-brands fa-linkedin"></i>
                     </div>
 
-                    <div class="col-3">
-                        <button>
-                            <span class="fa fa-search"></span>
-                        </button>
+                </div>
+                <div class="col-4">
+                    <p>
+                        Contact Info
+                    </p>
+                    <div class="contact-info">
+
+
                     </div>
-                </form>
+
+                </div>
+
+
+
             </div>
+
+
+            <p class="copyright">&copy; 2024 <span>EXplore</span> All Right Reserved</p>
         </div>
     </div>
 
 
-    <section class="packages" id="packages">
-        <h2 class="title">
-            Discover Our Packages ...
-        </h2>
-        <div class="container">
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/ahmed-afifi-Jl7Mj4i65CE-unsplash.jpg">
-                </div>
-                <div class="product-info">
-                    <strong class="location"> Egypt <span> cairo</span> </strong>
-                    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="booking">
-                        <button> Book now </button>
-                        <strong class="price"> $300</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/rome.jpg">
-                </div>
-                <div class="product-info">
-                    <strong class="location"> Italy <span> rome </span> </strong>
-                    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="booking">
-                        <button> Book now </button>
-                        <strong class="price"> $730</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/france.jpg">
-                </div>
-                <div class="product-info">
-                    <strong class="location"> France <span> paris</span> </strong>
-                    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="booking">
-                        <button> Book now </button>
-                        <strong class="price"> $550</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/ahmed-afifi-Jl7Mj4i65CE-unsplash.jpg">
-                </div>
-                <div class="product-info">
-                    <strong class="location"> Egypt <span> cairo</span> </strong>
-                    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="booking">
-                        <button> Book now </button>
-                        <strong class="price"> $300</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/rome.jpg">
-                </div>
-                <div class="product-info">
-                    <strong class="location"> Italy <span> rome </span> </strong>
-                    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="booking">
-                        <button> Book now </button>
-                        <strong class="price"> $730</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="images/france.jpg">
-                </div>
-                <div class="product-info">
-                    <strong class="location"> France <span> paris</span> </strong>
-                    <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    <div class="booking">
-                        <button> Book now </button>
-                        <strong class="price"> $550</strong>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
+
+
+    <!-- <section class="packages" id="packages">
+            <h2 class="title">
+                Discover Our Packages ...
+            </h2>
+            <div class="container">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/ahmed-afifi-Jl7Mj4i65CE-unsplash.jpg">
+                    </div>
+                    <div class="product-info">
+                        <strong class="location"> Egypt <span> cairo</span> </strong>
+                        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
+                        </p>
+                        <div class="booking">
+                            <button> Book now </button>
+                            <strong class="price"> $300</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/rome.jpg">
+                    </div>
+                    <div class="product-info">
+                        <strong class="location"> Italy <span> rome </span> </strong>
+                        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
+                        </p>
+                        <div class="booking">
+                            <button> Book now </button>
+                            <strong class="price"> $730</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/france.jpg">
+                    </div>
+                    <div class="product-info">
+                        <strong class="location"> France <span> paris</span> </strong>
+                        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
+                        </p>
+                        <div class="booking">
+                            <button> Book now </button>
+                            <strong class="price"> $550</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/ahmed-afifi-Jl7Mj4i65CE-unsplash.jpg">
+                    </div>
+                    <div class="product-info">
+                        <strong class="location"> Egypt <span> cairo</span> </strong>
+                        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
+                        </p>
+                        <div class="booking">
+                            <button> Book now </button>
+                            <strong class="price"> $300</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/rome.jpg">
+                    </div>
+                    <div class="product-info">
+                        <strong class="location"> Italy <span> rome </span> </strong>
+                        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
+                        </p>
+                        <div class="booking">
+                            <button> Book now </button>
+                            <strong class="price"> $730</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/france.jpg">
+                    </div>
+                    <div class="product-info">
+                        <strong class="location"> France <span> paris</span> </strong>
+                        <p class="description">Lorem Ipsum is simply dummy text of the printing and typesetting
+                            industry.
+                        </p>
+                        <div class="booking">
+                            <button> Book now </button>
+                            <strong class="price"> $550</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+    <script src="bootstrap/js/popper.min.js"></script>
+    <script src="bootstrap/js/jquery-3.7.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
 </body>
 
 </html>

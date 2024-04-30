@@ -3,6 +3,7 @@
   --main-color: #a26329;
   --LightGrayColor: #dedede;
   --DarkGrayColor: #999;
+  --assetcolor:  #2971a2;
 }
 
 /* Start Global Rules */
@@ -16,234 +17,154 @@ html {
 }
 body {
   font-family: "Poppins", sans-serif;
-  /* background-color: aquamarine; */
 }
 
-ul {
-  list-style: none;
-}
 .container {
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-
-/* Small */
-
-@media (max-width: 768px)  {
-  .container {
-    width: 755px;
-  }
- 
-}
-/* Medium */
-@media (min-width: 992) {
-  .container {
-    width: 970px;
-  }
-}
-/* Large */
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-
-/* Header */
-header {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-  /* background-color: var(--LightGrayColor); */
-}
-header img {
-  height: 50px;
-}
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   position: relative;
-  margin-top: 30px;
-  height: 90px;
-  /* background-color: blue; */
+  z-index: 999;
 }
 
-header nav {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-header nav .toggle-menu {
-  font-size: 22px;
+.section-title {
+  font-size:  45px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 70px;
+
 }
 
-@media (min-width: 768px) {
-  header nav .toggle-menu {
-    display: none;
-  }
-}
 
-header nav ul {
-  display: flex;
-  margin-right: 45px;
-  /* width: 60%; */
-}
-@media (max-width: 768px) {
-  header nav ul {
-    display: none;
-  }
-  header nav button {
-    display: none;
-  }
-  header nav .toggle-menu:hover + ul {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 80%;
-    left: 0px;
-    width: 100%;
-    background-color: rgba(255, 255, 255);
-    z-index: 3;
-  }
-  header nav .toggle-menu:hover + ul li a {
-    padding: 25px;
-  }
-}
 
-header nav ul li a {
-  padding: 40px 10px;
-  display: block;
+
+/* //////////////// */
+
+/* Navigation Bar (Fixed on all pages) */
+.navbar {
+  padding-top: 3.5rem;
+  /* background-color: #a26329; */
+  /* border-bottom: var(--DarkGrayColor) solid 1px; */
+}
+.nav-link {
   color: black;
-  text-decoration: none;
   font-size: 15px;
-  transition: 0.2s;
-  width: 90%;
   margin-left: 20px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
 
-header nav ul li a:hover {
+.nav-link:hover {
   color: var(--main-color);
 }
 
-header nav button {
-  width: 120px;
+/* Content of Page */
+
+h2.title {
+  text-align: center;
+  margin: 50px;
+  font-weight: 600;
+ 
+}
+
+.row.contact {
+  padding: 45px;
+}
+
+.overlay.contact {
+  height: 400px;
+  background-color: var(--main-color);
+  background-image: url("../images/andrew-stutesman-l68Z6eF2peA-unsplash.jpg");
+  background-size: cover;
+}
+
+.overlay-home {
+  background-image: url("../images/home_landing.jpg");
+  min-height: 100vh;
+  background-size: cover;
+}
+
+.overlay-gradient {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 103%;
+  z-index: 1; /* Ensure the overlay is above the content */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.8),
+    rgba(0, 0, 0, 0)
+  );
+}
+.contact h2 {
+  margin-bottom: 20px;
+}
+.list-unstyled {
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.submit-btn {
+  width: 110px;
   padding: 12px 4px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 500;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: var(--main-color);
   border: none;
   border-radius: 16px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  /* margin-top: 10px; */
 }
 
-header nav button:hover {
-  background-color: var(--main-color);
+.submit-btn:hover {
+  background-color:#fff;
   box-shadow: 0px 15px 20px rgba(144, 148, 147, 0.4);
-  color: #fff;
+  color:#000;
   transform: translateY(-7px);
 }
 
-header nav button:active {
-  transform: translateY(-0.5px);
+/* //////////////// Home style ///////////// */
+/* Hero section */
+
+.hero-text h1 {
+  font-weight: 700;
+  padding: 15px;
+  margin-top: 30px;
+  line-height: 1.5em;
+  font-size: 3em;
+  letter-spacing: 1px;
 }
 
-/* //////////////////// Landing Section /////////////////////// */
-
-.landing {
-  min-height: 100vh;
-  background-color: var(--main-color);
-  background-image: url("../images/luca-bravo-O453M2Liufs-unsplash.jpg");
-  background-size: cover;
-}
-.landing .container {
-  display: flex;
-}
-.landing .overlay {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; /* Ensure the overlay is above the content */
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.8),
-    rgba(0, 0, 0, 0)
-  ); /* Define your gradient */
-}
-
-.landing .text {
-  position: absolute;
-  top: 42%;
-  z-index: 2;
-  transform: translateY(-80%);
-  display: flex;
-  justify-content: flex-end;
-}
-
-.landing .text .content h2 {
-  font-size: 50px;
-  letter-spacing: 2px;
-  line-height: 66px;
-}
-.landing .text .content p {
-  font-weight: 300;
-}
-
-
-
-/* Search Bar */
-
-.landing .search-bar {
+/* Search bar */
+ .search-bar {
   background-color: #fff;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.05);
   height: 80px;
   border-radius: 40px;
-  position: absolute;
-  top: 60%;
-  z-index: 2;
-  transform: translateY(-80%);
-  display: flex;
-  justify-content: flex-end;
+  padding-left: 20px;
+  /* transform: translateY(-80%); */
 }
-.landing form {
+/* .hero form {
   display: flex;
   align-items: center;
   padding: 20px;
   position: relative;
   width: 100%;
-}
-.landing .col-1,
-.col-2, .col-3 {
-  margin: 10px;
-  padding: 10px;
+} */
 
-}
-
-
-.landing input,
+.search-bar input,
 select {
   border: 0 none;
-  outline: none;
+  outline: 0;
 }
-.landing .col-2 {
+.search-bar .search-cat {
   border-left: 1px solid var(--LightGrayColor);
 }
 
-.landing button {
+.search-button {
   width: 40px; /* Adjust button width */
   height: 40px; /* Adjust button height */
   border-radius: 50%; /* Make button circular */
@@ -251,62 +172,38 @@ select {
   color: #fff; /* Text color */
   border: none; /* Remove border */
   cursor: pointer;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
-.landing i {
+.search-bar i {
   margin-right: 10px;
   font-size: 20px;
-  color: var(--DarkGrayColor)
+  color: var(--DarkGrayColor);
 }
-.landing button:hover {
-  background-color: var(--LightGrayColor); 
-}
-
-.landing button .fa {
-  font-size: 18px; /* Adjust icon size */
+.search-bar button:hover {
+  background-color: var(--LightGrayColor);
 }
 
 input::placeholder {
   font-weight: 300;
   font-size: 15px;
 }
-.landing select {
+.search-bar select {
   font-weight: 300;
   font-size: 15px;
   margin-left: 13px;
 }
 
 
-
-/* ////////////////// Products Section /////////////// */
-
-.packages h2 {
-  text-align: center;
-  margin: 50px;
-}
-
-
-.packages {
-  /* background-color: hsl(30, 60%, 90%); */
-}
-
-.packages .container {
-  margin-top: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-
-}
+/* ///////////    Home | Packages       ///////////// */
 .product-card {
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border-radius: 12px;
   padding: 10px;
   min-height: 20em;
-  width: 30%;
   overflow: hidden;
   margin: 10px;
   transition: 0.3s ease;
@@ -315,63 +212,67 @@ input::placeholder {
 .product-card:hover {
   transform: scale(1.1);
 }
-.product-image img{
-  width: 100%;
+.product-image{
+  /* width: 100%; */
   margin: 2px;
   border-radius: 12px;
 }
 .product-card:hover .product-image {
   opacity: 0.9;
 }
-.product-info {
-  padding: 8px;
+
+.packages .product-card .submit-btn {}
+
+/* ////////// checkout form //////////////////*/
+
+.checkout-form {
+  margin-top: 50px;
+  padding:30px;
 }
 
-.product-info .location {
-  font-size: 20px;
-  text-transform:capitalize;
-
-}
-
-.location span {
-  font-size: 15px;
-  font-weight: 400;
-  margin-left: 4px;
-  color: var(--DarkGrayColor);
-}
-.product-info .booking {
-  display: flex;
-  justify-content: space-between;
-
-  align-items: center;
-}
-
-
-.packages button {
-  width: 120px;
-  padding: 12px 4px;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
-  color: var(--LightGrayColor);
-  background-color: var(--main-color);
-  border: none;
-  border-radius: 16px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-}
-
-.product-info .description {
+.form-text {
   font-weight: 300;
-  font-size: 0.9em;
-  line-height: normal;
-  margin: 20px 0px
-
-}
-.booking .price {
-  font-size: 1.2em;
+  margin: 20px 0px 20px 0px;
 }
 
+.checkout-form .submit-btn, 
+.contact-form .submit-btn {
+  margin-top: 22px;
+}
+
+
+/* //////////// Home | Footer Section */
+
+
+.footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color:var(--LightGrayColor);
+  text-align: center;
+}
+
+.footer p:not(.copyright) {
+  text-transform: uppercase;
+  border-bottom: 1px solid white;
+  font-size: 20px;
+  padding: 20px;
+  margin: 20px auto;
+  width: fit-content;
+  letter-spacing: 6px;
+}
+.footer .social-icons i {
+  padding: 20px;
+  font-size: 27px;
+  color: var(--main-color);
+}
+.footer .copyright {
+  margin-top: 30px;
+}
+.footer .copyright span {
+font-weight: bold;
+}
+
+.footer .customer-care {
+  padding: 50px;
+  letter-spacing: 10px;
+}
