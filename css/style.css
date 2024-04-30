@@ -243,30 +243,33 @@ input::placeholder {
 
 /* //////////// Home | Footer Section */
 
+/* .footer .container {
+  margin: 20px;
 
+} */
 .footer {
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
   background-color:var(--LightGrayColor);
   text-align: center;
 }
 
 .footer p:not(.copyright) {
   text-transform: uppercase;
-  border-bottom: 1px solid white;
-  font-size: 20px;
-  padding: 20px;
+  /* border-bottom: 1px solid white; */
+  font-size: 15px;
+  /* padding: 20px; */
   margin: 20px auto;
   width: fit-content;
   letter-spacing: 6px;
 }
 .footer .social-icons i {
-  padding: 20px;
+  padding: 7px;
   font-size: 27px;
   color: var(--main-color);
 }
 .footer .copyright {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 .footer .copyright span {
 font-weight: bold;
