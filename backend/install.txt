@@ -6,3 +6,8 @@ pip install mysql-connector-python
 pip install pymysql
 pip install MySQL-python
 pip install cryptography
+pip install Flask
+pip install --upgrade Flask
+pip install gunicorn
+gunicorn -b 127.0.0.1:5000 app:app
+pip install waitress

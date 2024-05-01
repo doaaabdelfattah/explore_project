@@ -15,6 +15,9 @@ from models.booking import Booking
 from models.package import Package
 from models.base_model import Base, BaseModel
 
+all_classes = {"BaseModel": BaseModel, "User": User, "booking": Booking,
+                   "package": Package}
+
 # import MySQLdb
 
 # print('load_dot')
@@ -27,8 +30,7 @@ class DBStorage:
 	__engine = None
 	__session = None
 
-	all_classes = {"BaseModel": BaseModel, "User": User, "booking": Booking,
-                   "package": Package}
+	
 
 
 	def __init__(self):
@@ -43,6 +45,19 @@ class DBStorage:
 
 		if getenv('ENV') == 'test':
 			Base.metadata.drop_all(self.__engine)
+	
+	
+
+	def all(self, cls=None):
+		"""query on the current database session"""
+		new_dict = {}
+		for clss in all_classes:
+			if cls is None or cls is all_classes[clss] or cls is clss:
+				objs = self.__session.query(all_classes[clss]).all()
+				for obj in objs:
+					key = obj.__class__.__name__ + '.' + obj.id
+					new_dict[key] = obj
+					return (new_dict)
 	
 	
 	def reload(self):
