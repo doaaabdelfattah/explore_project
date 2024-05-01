@@ -2,8 +2,8 @@
 base_model
 """
 import uuid
-import models
 from datetime import datetime
+import models
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import sessionmaker
@@ -31,7 +31,7 @@ class BaseModel:
             for k, v in kwargs.items():
                 if k == 'createdDate' or k == 'updatedDate':
                     v = datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f')
-                self.__dict__.update({k: v})
+                setattr(self, k, v)
 
     def reload(self):
         """reload"""
@@ -46,7 +46,7 @@ class BaseModel:
     def save(self):
         """Save"""
         #print('baseModel Save')
-        self.updatedDate = datetime.now
+        self.updatedDate = datetime.now()
         models.storage.new(self)
         models.storage.save()
 
