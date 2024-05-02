@@ -3,7 +3,7 @@ package
 """
 
 from os import getenv
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, LargeBinary
 from models.base_model import Base, BaseModel
 
 
@@ -19,4 +19,5 @@ class Package(BaseModel,Base):
     price = Column(String(128), nullable=False)
     description1 = Column(String(128), nullable=False)
     description2 = Column(String(128), nullable=False)
+    image = Column(LargeBinary, nullable=True)
     

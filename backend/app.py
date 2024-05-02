@@ -8,13 +8,12 @@ from models.user import User
 from models.booking import Booking
 from models.package import Package
 from models.base_model import Base, BaseModel
-
+from models.data import Data
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Routes
-
 
 @app.route('/')
 def index():
@@ -56,16 +55,18 @@ def register():
     return render_template('register.html')
 
 # print('main')
-# user = User(
-#     name='Alshimaa Mamdouh',
-#     email='alshimaa.mamdouh.abdelaziz@gmail.com',
-#     address='6th october',
-#     phone='23447677878'
+#user = User(
+#    name='Alshimaa Mamdouh',
+#    email='alshimaa.mamdouh.abdelaziz@gmail.com',
+#   address='6th october',
+#    phone='23447677878'
 # )
 # user.save()
+Data.user_data()
+Data.package_data()
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=5000)
-    app.run(debug=True)
-    # storage.reload()
+   # app.run(host='0.0.0.0', port=5000)
+   # app.run(debug=True)
+    storage.reload()
