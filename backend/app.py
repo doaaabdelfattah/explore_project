@@ -14,6 +14,8 @@ from models.base_model import Base, BaseModel
 app = Flask(__name__)
 
 # Routes
+
+
 @app.route('/')
 def index():
     # all packages
@@ -27,7 +29,8 @@ def search():
         search_term = request.form.get('search_term')
         packages = storage.all(Package).values()
         # Filter packages by name containing the search term
-        filtered_packages = [package for package in packages if search_term.lower() in package.package_name.lower()]
+        filtered_packages = [package for package in packages if search_term.lower(
+        ) in package.package_name.lower()]
         return render_template('index.html', packages=filtered_packages)
     return render_template('index.html')
 
@@ -39,29 +42,30 @@ def register():
         email = request.form['email']
         address = request.form['address']
         phone = request.form['phone']
-        
+
         # Create a new user instance
         new_user = User(name=name, email=email, address=address, phone=phone)
-        
+
         # Add the user to the database
         storage.new(new_user)
         storage.save()
-        
+
         # Redirect to the home page or any other page after registration
         return redirect('register.html')
-    
+
     return render_template('register.html')
 
+# print('main')
+# user = User(
+#     name='Alshimaa Mamdouh',
+#     email='alshimaa.mamdouh.abdelaziz@gmail.com',
+#     address='6th october',
+#     phone='23447677878'
+# )
+# user.save()
 
-#print('main')
-#user  = User(
-        #name = 'Alshimaa Mamdouh',
-        #email = 'alshimaa.mamdouh.abdelaziz@gmail.com',
-        #address = '6th october',
-        #phone = '23447677878' 
-#)
-#user.save()
 
 if __name__ == '__main__':
-        #app.run(host='0.0.0.0', port=5000)
-        app.run(debug=True)
+    # app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
+    # storage.reload()
