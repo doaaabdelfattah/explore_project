@@ -19,7 +19,7 @@ class Data():
     # users
     def user_data():
         user1 = User(
-            id = str(uuid.uuid4()),
+            #id = str(uuid.uuid4()),
             name='Alshimaa Mamdouh',
             email='alshimaa.mamdouh.abdelaziz@gmail.com',
             address='6th october',
@@ -28,7 +28,7 @@ class Data():
         user1.save()
         
         user2 = User(
-            id = str(uuid.uuid4()),
+            #id = str(uuid.uuid4()),
             name = 'Doaa Abdelfattah',
             email = 'doaa.abdelfattah@gmail.com',
             address = 'shorouk',
@@ -49,7 +49,7 @@ class Data():
             
             
         package1 = Package(
-            id = str(uuid.uuid4()),
+            #id = str(uuid.uuid4()),
             package_name = 'Italy',
             price = '300$',
             description1 = 'fhgfhfhfhf',
@@ -59,7 +59,7 @@ class Data():
         package1.save()
             
         package2 = Package(
-            id = str(uuid.uuid4()),
+            #id = str(uuid.uuid4()),
             package_name = 'Egypt',
             price = '300$',
             description1 = 'fhgfhfhfhf',
