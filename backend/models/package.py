@@ -19,5 +19,5 @@ class Package(BaseModel,Base):
     price = Column(String(128), nullable=False)
     description1 = Column(String(128), nullable=False)
     description2 = Column(String(128), nullable=False)
-    image = Column(LargeBinary, nullable=True)
+    image = Column(LargeBinary(length=2**32-1), nullable=True)
     

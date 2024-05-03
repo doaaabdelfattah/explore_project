@@ -2,6 +2,8 @@
 insert data
 """
 
+import base64
+import os
 from sqlalchemy import func
 from os import getenv
 from models import storage
@@ -36,15 +38,15 @@ class Data():
     #-----------------------------------------------------
     # packages
     def package_data():
-        path1= r'\layout\images\andrew-stutesman-l68Z6eF2peA-unsplash.jpg'
-        path2 = r'\layout\images\dino-reichmuth-A5rCN8626Ck-unsplash.jpg'
+        path1 = 'layout/images/rome.jpg'
+        path2 = 'layout/images/egypt.jpg'
         
         with open(path1, 'rb') as f:
-            binary1 = f.read()
-            pass
+            binary1 = base64.b64encode(f.read())
+        
         with open(path2, 'rb') as f:
-            binary2 = f.read()
-            pass
+            binary2 = base64.b64encode(f.read())
+            
             
         package1 = Package(
             id = str(uuid.uuid4()),
