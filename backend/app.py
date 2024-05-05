@@ -15,11 +15,15 @@ app = Flask(__name__)
 #app.debug = True
 
 # Routes
-
+Data.user_data()
+Data.package_data()
 @app.route('/')
 def index():
     # all packages
     packages = storage.all(Package).values()
+    packages = sorted(packages, key=lambda k: k.package_name)
+
+    #print(packages)
     return render_template('index.html', packages=packages)
 
 
@@ -31,7 +35,7 @@ def search():
         # Filter packages by name containing the search term
         filtered_packages = [package for package in packages if search_term.lower(
         ) in package.package_name.lower()]
-        return render_template('layout/index.html', packages=filtered_packages)
+        return render_template('index.html', packages=filtered_packages)
     return render_template('index.html') """
 
 
@@ -64,8 +68,7 @@ def register():
 # )
 # user.save()
 
-Data.user_data()
-Data.package_data()
+
 
 if __name__ == '__main__':
    #app.run(host='0.0.0.0', port=5000)

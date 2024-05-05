@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple HTML File</title>
+    
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is a simple HTML file.</p>
+    
+    <div class="packages">
+    <h1>packages</h1>
+</div>
+    <section class="package">
+  {% for package in packages %}
+  <article>
+    <div class="title_box">
+      <h2>{{ package.package_name }}</h2>
+      <div class="price_by_night">{{ package.price}}</div>
+    </div>
+    <div class="information">
+      <div class="description1">{{ package.description1 }} </div>
+          <div class="description2">{{ package.description2 }} </div>
+          
+        </div>
+        
+  </article>
+  {% endfor %}
+    </section>
+  </div>
+   
+    
 </body>
 </html>
