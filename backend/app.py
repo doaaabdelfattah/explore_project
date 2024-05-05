@@ -20,7 +20,7 @@ app = Flask(__name__)
 def index():
     # all packages
     packages = storage.all(Package).values()
-    return render_template('templates/index.html', packages=packages)
+    return render_template('index.html', packages=packages)
 
 
 """ @app.route('/search', methods=['GET', 'POST'])
