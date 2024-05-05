@@ -12,6 +12,7 @@ from models.data import Data
 
 # Initialize Flask app
 app = Flask(__name__)
+#app.debug = True
 
 # Routes
 
@@ -19,10 +20,10 @@ app = Flask(__name__)
 def index():
     # all packages
     packages = storage.all(Package).values()
-    return render_template('index.html', packages=packages)
+    return render_template('templates/index.html', packages=packages)
 
 
-@app.route('/search', methods=['GET', 'POST'])
+""" @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
         search_term = request.form.get('search_term')
@@ -30,11 +31,11 @@ def search():
         # Filter packages by name containing the search term
         filtered_packages = [package for package in packages if search_term.lower(
         ) in package.package_name.lower()]
-        return render_template('index.html', packages=filtered_packages)
-    return render_template('index.html')
+        return render_template('layout/index.html', packages=filtered_packages)
+    return render_template('index.html') """
 
 
-@app.route('/register', methods=['GET', 'POST'])
+""" @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         name = request.form['name']
@@ -52,7 +53,7 @@ def register():
         # Redirect to the home page or any other page after registration
         return redirect('register.html')
 
-    return render_template('register.html')
+    return render_template('register.html') """
 
 # print('main')
 #user = User(
@@ -62,11 +63,12 @@ def register():
 #    phone='23447677878'
 # )
 # user.save()
+
 Data.user_data()
 Data.package_data()
 
-
 if __name__ == '__main__':
-   # app.run(host='0.0.0.0', port=5000)
-   # app.run(debug=True)
-    storage.reload()
+   #app.run(host='0.0.0.0', port=5000)
+   #storage.reload()
+   app.run()
+    
