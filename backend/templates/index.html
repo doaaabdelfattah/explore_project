@@ -10,22 +10,26 @@
     <div class="packages">
     <h1>packages</h1>
 </div>
-    <section class="package">
+<section class="package">
   {% for package in packages %}
   <article>
-    <div class="title_box">
+    <div>
       <h2>{{ package.package_name }}</h2>
-      <div class="price_by_night">{{ package.price}}</div>
+      {% if package.image %}
+        <img src="data:image/png;base64,{{ package.image }}" />
+      {% else %}
+        <p>No image available</p>
+      {% endif %}
+      <div>{{ package.price }}</div>
     </div>
-    <div class="information">
-      <div class="description1">{{ package.description1 }} </div>
-          <div class="description2">{{ package.description2 }} </div>
-          
-        </div>
-        
+    <div>
+      <div>{{ package.description1 }}</div>
+      <div>{{ package.description2 }}</div>
+    </div>
   </article>
   {% endfor %}
-    </section>
+</section>
+
   </div>
    
     

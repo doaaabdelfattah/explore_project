@@ -1,5 +1,6 @@
 
 
+import base64
 from sqlalchemy import func
 from os import getenv
 from flask import Flask, redirect, render_template, request
@@ -21,8 +22,12 @@ Data.package_data()
 def index():
     # all packages
     packages = storage.all(Package).values()
-    packages = sorted(packages, key=lambda k: k.package_name)
-
+    #packages = sorted(packages, key=lambda k: k.package_name)
+    for package in packages:
+         if hasattr(package, 'image') and package.image:
+             package.image = base64.b64encode(package.image).decode('utf-8')
+             
+             
     #print(packages)
     return render_template('index.html', packages=packages)
 
