@@ -47,16 +47,6 @@ class DBStorage:
 	
 	
 
-	""" def all(self, cls=None):
-		new_dict = {}
-		for clss in all_classes:
-			if cls is None or cls is all_classes[clss] or cls is clss:
-				objs = self.__session.query(all_classes[clss]).all()
-				for obj in objs:
-					key = obj.__class__.__name__ + '.' + obj.id
-					new_dict[key] = obj
-					return (new_dict)
-	 """
 	
 	def all(self, cls):
 		"""Query all objects from the current database session"""

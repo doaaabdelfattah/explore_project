@@ -18,6 +18,8 @@ app = Flask(__name__)
 # Routes
 Data.user_data()
 Data.package_data()
+
+
 @app.route('/')
 def index():
     # all packages
@@ -25,8 +27,7 @@ def index():
     lenth = len(storage.all(Package))
     packages = sorted(packages, key=lambda k: k.package_name)
     print("Number of packages:", lenth)
-
-
+    
     for package in packages:
          if hasattr(package, 'image') and package.image:
              package.image = base64.b64encode(package.image).decode('utf-8')
