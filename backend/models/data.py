@@ -43,13 +43,16 @@ class Data():
         path3 = 'layout/images/france.jpg'
         
         with open(path1, 'rb') as f:
-            binary1 = base64.b64encode(f.read())
+            #binary1 = base64.b64encode(f.read())
+            binary1 = f.read()
         
         with open(path2, 'rb') as f:
-            binary2 = base64.b64encode(f.read())
+            #binary2 = base64.b64encode(f.read())
+            binary2 = f.read()
         
         with open(path3, 'rb') as f:
-            binary3 = base64.b64encode(f.read())
+            #binary3 = base64.b64encode(f.read())
+            binary3 = f.read()
             
             
         package1 = Package(
