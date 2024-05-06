@@ -10,6 +10,18 @@
             max-width: 200px; 
             max-height: 150px; 
         }
+        .iframe-container {
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .iframe-container iframe {
+        width: 100%;
+        height: 200px;
+        border: none;
+        overflow: hidden;
+    }
     </style>
     
 </head>
@@ -17,6 +29,10 @@
     
     <div class="packages">
     <h1>***Packages***</h1>
+    <div class="iframe-container">
+      <iframe src="https://www.google.com/" scrolling="no"></iframe>
+  </div>
+  
 </div>
 <section class="package">
   {% for package in packages %}
