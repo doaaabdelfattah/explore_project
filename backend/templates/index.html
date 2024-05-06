@@ -16,7 +16,7 @@
     <div>
       <h2>{{ package.package_name }}</h2>
       {% if package.image %}
-        <img src="data:image/png;base64,{{ package.image }}" />
+        <img src="data:image/jpeg;base64,{{ package.image }}" />
       {% else %}
         <p>No image available</p>
       {% endif %}
