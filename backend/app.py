@@ -21,17 +21,15 @@ Data.package_data()
 @app.route('/')
 def index():
     # all packages
-    packages = storage.all(Package).values()
-    #packages = sorted(packages, key=lambda k: k.package_name)
-    
-    print("Number of packages:", len(packages))
+    packages = storage.all(Package)
+    lenth = len(storage.all(Package))
+    packages = sorted(packages, key=lambda k: k.package_name)
+    print("Number of packages:", lenth)
 
 
     for package in packages:
          if hasattr(package, 'image') and package.image:
              package.image = base64.b64encode(package.image).decode('utf-8')
-             
-             
              
     #print(packages)
     return render_template('index.html', packages=packages)

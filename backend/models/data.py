@@ -40,12 +40,16 @@ class Data():
     def package_data():
         path1 = 'layout/images/rome.jpg'
         path2 = 'layout/images/egypt.jpg'
+        path3 = 'layout/images/france.jpg'
         
         with open(path1, 'rb') as f:
             binary1 = base64.b64encode(f.read())
         
         with open(path2, 'rb') as f:
             binary2 = base64.b64encode(f.read())
+        
+        with open(path3, 'rb') as f:
+            binary3 = base64.b64encode(f.read())
             
             
         package1 = Package(
@@ -67,6 +71,16 @@ class Data():
             image = binary2
             )
         package2.save()
+
+        package3 = Package(
+            #id = str(uuid.uuid4()),
+            package_name = 'France',
+            price = '300$',
+            description1 = 'fhgfhfhfhf',
+            description2 = 'ghfhgfhfhjgjhghjghjghjgjhghgfhgfghfhgjgjhhjhghghhgghfg',
+            image = binary3
+            )
+        package3.save()
 
 #------------------------------------------------------------------------
 

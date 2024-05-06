@@ -40,16 +40,14 @@ class DBStorage:
 		# uri = 'mysql+pymysql://root@localhost/'+getenv('SQL_DB')
 		# print('mysql+pymysql://{}:{}@{}/{}'.format(getenv('SQL_USER'),getenv('SQL_PASS'),getenv('SQL_HOST'),getenv('SQL_DB')))
 		self.__engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.format(getenv('SQL_USER'),getenv('SQL_PASS'),getenv('SQL_HOST'),getenv('SQL_DB')),echo=True)
-		
+	
 		# self.__engine = create_engine(uri,echo=True)
-
 		if getenv('ENV') == 'test':
 			Base.metadata.drop_all(self.__engine)
 	
 	
 
-	def all(self, cls=None):
-		"""query on the current database session"""
+	""" def all(self, cls=None):
 		new_dict = {}
 		for clss in all_classes:
 			if cls is None or cls is all_classes[clss] or cls is clss:
@@ -58,7 +56,14 @@ class DBStorage:
 					key = obj.__class__.__name__ + '.' + obj.id
 					new_dict[key] = obj
 					return (new_dict)
+	 """
 	
+	def all(self, cls):
+		"""Query all objects from the current database session"""
+		objs = self.__session.query(cls).all()
+		print (objs)		
+		return objs
+
 	
 	def reload(self):
 		"""Create tables and current database session"""
