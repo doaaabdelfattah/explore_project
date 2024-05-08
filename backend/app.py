@@ -3,7 +3,7 @@
 import base64
 from sqlalchemy import func
 from os import getenv
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, flash
 from models import storage
 from models.user import User
 from models.booking import Booking
@@ -13,7 +13,8 @@ from models.data import Data
 
 # Initialize Flask app
 app = Flask(__name__)
-#app.debug = True
+app.secret_key = 'abcdefg123456'
+# app.debug = True
 
 # Routes
 Data.user_data()
@@ -21,18 +22,40 @@ Data.package_data()
 
 
 @app.route('/')
+@app.route('/index.html')
 def index():
     # all packages
     packages = storage.all(Package)
-    #lenth = len(storage.all(Package))
+    # length = len(storage.all(Package))
     packages = sorted(packages, key=lambda k: k.package_name)
-    #print("Number of packages:", lenth)
-    
+    # print("Number of packages:", length)
+
     for package in packages:
-         if hasattr(package, 'image') and package.image:
-             package.image = base64.b64encode(package.image).decode('utf-8')
-             
-    return render_template('index.html', packages=packages)
+        if hasattr(package, 'image') and package.image:
+            package.image = base64.b64encode(package.image).decode('utf-8')
+
+    return render_template('index.html', packages=packages, pagetitle="Home")
+
+
+@app.route('/submit_booking.html', methods=['GET', 'POST'])
+def submit_booking():
+    if request.method == 'POST':
+        if not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['destination']:
+            flash('Please enter all the fields', 'error')
+        else:
+            booking = Booking(
+                first_name=request.form['f-name'],
+                last_name=request.form['l-name'],
+                phone=request.form['phone'],
+                email=request.form['email'],
+                destination=request.form['destination'],  # Added comma here
+                message=request.form['message']
+            )
+            # Add the Booking object to the database session & save
+            booking.save()
+            # Flash a success message
+            flash('Booking was successfully submitted')
+    return render_template('submit_booking.html')
 
 
 """ @app.route('/search', methods=['GET', 'POST'])
@@ -68,7 +91,7 @@ def register():
     return render_template('register.html') """
 
 # print('main')
-#user = User(
+# user = User(
 #    name='Alshimaa Mamdouh',
 #    email='alshimaa.mamdouh.abdelaziz@gmail.com',
 #   address='6th october',
@@ -77,9 +100,7 @@ def register():
 # user.save()
 
 
-
 if __name__ == '__main__':
-   #app.run(host='0.0.0.0', port=5000)
-   #storage.reload()
-   app.run()
-    
+    # app.run(host='0.0.0.0', port=5000)
+    # storage.reload()
+    app.run()
