@@ -57,8 +57,8 @@ class Data():
         package1 = Package(
             # id = str(uuid.uuid4()),
             package_name='Italy',
-            price='300$',
-            description1='fhgfhfhfhf',
+            price='660$',
+            description1='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             description2='ghfhgfhfhjgjhghjghjghjgjhghgfhgfghfhgjgjhhjhghghhgghfg',
             image=binary1
         )
@@ -68,7 +68,7 @@ class Data():
             # id = str(uuid.uuid4()),
             package_name='Egypt',
             price='300$',
-            description1='fhgfhfhfhf',
+            description1='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             description2='ghfhgfhfhjgjhghjghjghjgjhghgfhgfghfhgjgjhhjhghghhgghfg',
             image=binary2
         )
@@ -78,7 +78,7 @@ class Data():
             # id = str(uuid.uuid4()),
             package_name='France',
             price='300$',
-            description1='fhgfhfhfhf',
+            description1='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             description2='ghfhgfhfhjgjhghjghjghjgjhghgfhgfghfhgjgjhhjhghghhgghfg',
             image=binary3
         )

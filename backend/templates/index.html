@@ -38,59 +38,31 @@
 </div>
 <!-- Popular packages -->
 <div class="container packages">
-    <h1 class="section-title"> Featured Packages </h1>
-    <div class="row row-cols-md-3 g-4 py-5">
-        <!-- Card Nu. 1 -->
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
-            <div class="card h-100 product-card">
-                <img src="images/rome.jpg" class="card-img-top product-image">
+    <h1 class="section-title">Featured Packages</h1>
+    <div class="cards-container">
+        <!-- Card No. 1 -->
+        <div class="content row">
+            {% for package in packages %}
+            <div class="col card product-card">
+                <div class='image'>
+                    <img src="data:image/jpeg;base64,{{ package.image }}" class="">
+                </div>
+
                 <div class="card-body">
-                    <h5 class="card-title"> <strong>Italy </strong> </h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <h5 class="card-title"><strong>{{ package.package_name }}</strong></h5>
+                    <p class="card-text">{{ package.description1 }}</p>
                 </div>
                 <div class="row justify-content-around mb-3 align-items-center">
-
-                    <button class="btn submit-btn"> Details</button>
-                    <h3 class="mb-0"> 300$</h3>
+                    <button class="btn submit-btn">Details</button>
+                    <h3 class="mb-0">{{ package.price }}</h3>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        <!-- Card Nu. 2 -->
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
-            <div class="card h-100 product-card">
-                <img src="images/egypt.jpg" class="card-img-top product-image">
-                <div class="card-body">
-                    <h5 class="card-title"> <strong>Egypt </strong> </h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                </div>
-                <div class="row justify-content-around mb-3 align-items-center">
 
-                    <button class="btn submit-btn"> Details</button>
-                    <h3 class="mb-0"> 300$</h3>
-                </div>
-            </div>
-        </div>
-        <!-- Card Nu. 3 -->
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
-            <div class="card h-100 product-card">
-                <img src="images/france.jpg" class="card-img-top product-image">
-                <div class="card-body">
-                    <h5 class="card-title"> <strong>France </strong> </h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
-                </div>
-                <div class="row justify-content-around mb-3 align-items-center">
-
-                    <button class="btn submit-btn"> Details</button>
-                    <h3 class="mb-0"> 300$</h3>
-                </div>
-            </div>
-        </div>
     </div>
-
 </div>
+
 
 <div class="about-section">
     <h1 class="section-title"> Why Explore ? </h1>
@@ -137,7 +109,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-12">
-                <img src="images/logo.png" height="50px" alt="logo" loading="lazy"></a>
+                <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy"></a>
             </div>
             <div class="col-lg-3 col-md-12">
                 <p>

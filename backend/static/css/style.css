@@ -193,6 +193,14 @@ input::placeholder {
 }
 
 /* ///////////    Home | Packages       ///////////// */
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .product-card {
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -200,15 +208,15 @@ input::placeholder {
   padding: 10px;
   min-height: 20em;
   overflow: hidden;
-  margin: 10px;
+  margin: 5px;
   transition: 0.3s ease;
 }
 
 .product-card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
-.product-image {
-  /* width: 100%; */
+.product-card img {
+  width: 100%;
   margin: 2px;
   border-radius: 12px;
 }
