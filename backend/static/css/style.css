@@ -75,6 +75,7 @@ h2.title {
   background-image: url("../images/home_landing.jpg");
   min-height: 100vh;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .overlay-gradient {
