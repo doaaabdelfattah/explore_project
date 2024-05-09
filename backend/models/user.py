@@ -5,6 +5,7 @@ user
 from os import getenv
 from sqlalchemy import Column, String
 from models.base_model import Base, BaseModel
+from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
@@ -21,3 +22,4 @@ class User(BaseModel, Base):
     email = Column(String(128), nullable=False)
     address = Column(String(128), nullable=False)
     phone = Column(String(128), nullable=False)
+    bookings = relationship("Booking", backref="user", cascade="all,delete")

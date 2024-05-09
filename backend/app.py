@@ -1,7 +1,9 @@
 
 
+
 import base64
 from sqlalchemy import func
+import sys, os
 from os import getenv
 from flask import Flask, redirect, render_template, request, flash
 from models import storage
@@ -20,30 +22,61 @@ app.secret_key = 'abcdefg123456'
 Data.user_data()
 Data.package_data()
 
-
 @app.route('/')
-@app.route('/index.html')
 def index():
-    # all packages
+    
+   
+     #all packages
     packages = storage.all(Package)
-    # length = len(storage.all(Package))
+    length = len(storage.all(Package))
     packages = sorted(packages, key=lambda k: k.package_name)
     # print("Number of packages:", length)
-
+    image_list = []
+    
     for package in packages:
         if hasattr(package, 'image') and package.image:
-            package.image = base64.b64encode(package.image).decode('utf-8')
+            image_list.append({'image':base64.b64encode(package.image).decode('utf-8'),
+                               'description1':package.description1,
+                               'package_name':package.package_name,
+                               'price':package.price})
 
-    return render_template('index.html', packages=packages, pagetitle="Home")
+            
+ 
+    return render_template('index.html', packages=image_list, pagetitle="Home")
 
 
-@app.route('/submit_booking.html', methods=['GET', 'POST'])
+# @app.route('/submit_booking.html', methods=['GET', 'POST'])
+# def submit_booking():
+#     if request.method == 'POST':
+#         if not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['destination']:
+#             flash('Please enter all the fields', 'error')
+#         else:
+#             booking = Booking(
+#                 first_name=request.form['f-name'],
+#                 last_name=request.form['l-name'],
+#                 phone=request.form['phone'],
+#                 email=request.form['email'],
+#                 destination=request.form['destination'],  # Added comma here
+#                 message=request.form['message']
+#             )
+#             # Add the Booking object to the database session & save
+#             try:
+#                 booking.save()
+#             except Exception as e:
+#                 print(e)
+
+            
+#             # Flash a success message
+#             flash('Booking was successfully submitted')
+#     return render_template('submit_booking.html')
+@app.route('/submit_booking', methods=['GET', 'POST'])
 def submit_booking():
     if request.method == 'POST':
         if not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['destination']:
             flash('Please enter all the fields', 'error')
         else:
             booking = Booking(
+
                 first_name=request.form['f-name'],
                 last_name=request.form['l-name'],
                 phone=request.form['phone'],
@@ -52,10 +85,20 @@ def submit_booking():
                 message=request.form['message']
             )
             # Add the Booking object to the database session & save
-            booking.save()
+            try:
+                booking.save()
+            except Exception as e:
+                print(e)
+                print('Catch Error')
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+
+            
             # Flash a success message
             flash('Booking was successfully submitted')
     return render_template('submit_booking.html')
+
 
 
 """ @app.route('/search', methods=['GET', 'POST'])

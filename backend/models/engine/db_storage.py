@@ -63,7 +63,11 @@ class DBStorage:
     def save(self):
         """Commit changes to the current databases session"""
         # print('dbStorage-Save')
+        # try:
         self.__session.commit()
+        """ except Exception as e:
+            self.__session.rollback()
+            print (str(e)) """
 
     def close(self):
         """ call close on private session. """

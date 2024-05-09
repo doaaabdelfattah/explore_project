@@ -36,9 +36,9 @@
                 </a>
                 <div id="nav-menu" class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Book Now</a></li>
+                        <li class="nav-item"><a href="/submit_booking" class="nav-link">Book Now</a></li>
                         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                     </ul>
                 </div>
@@ -47,7 +47,8 @@
 
             <!-- Checkout form -->
             <div class="col mt-6 bg-light checkout-form">
-                <form action=""{{ url_for('submit_booking') }}"" method="post" class="checkout">
+                <!-- <form action=""{{ url_for('submit_booking') }}"" method="post" class="checkout"> -->
+                <form action="/submit_booking" method="post" class="checkout">
                     <h2> Choose your Package </h2>
                     <p class="form-text">
                         Our team will contact you to assist in planning your next vacation. Our office hours are from 9
