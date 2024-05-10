@@ -88,9 +88,9 @@
                             <label for="destination">Destination</label>
                             <select class="form-control" id="destination" name="destination" required>
                                 <option value="" disabled selected>Select a destination</option>
-                                <option value="Destination 1">Destination 1</option>
-                                <option value="Destination 2">Destination 2</option>
-                                <option value="Destination 3">Destination 3</option>
+                                {% for package in packages_submit %}
+                                <option value="{{ package.id }}">{{ package.package_name }}</option>
+                                {% endfor %}
                                 <!-- Add more options as needed -->
                             </select>
                         </div>

@@ -18,19 +18,19 @@ app = Flask(__name__)
 app.secret_key = 'abcdefg123456'
 # app.debug = True
 
-# Routes
+
 Data.user_data()
 Data.package_data()
+# Routes
 
 @app.route('/')
 def index():
     
-   
      #all packages
     packages = storage.all(Package)
-    length = len(storage.all(Package))
     packages = sorted(packages, key=lambda k: k.package_name)
-    # print("Number of packages:", length)
+
+    # decode image
     image_list = []
     
     for package in packages:
@@ -45,32 +45,14 @@ def index():
     return render_template('index.html', packages=image_list, pagetitle="Home")
 
 
-# @app.route('/submit_booking.html', methods=['GET', 'POST'])
-# def submit_booking():
-#     if request.method == 'POST':
-#         if not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['destination']:
-#             flash('Please enter all the fields', 'error')
-#         else:
-#             booking = Booking(
-#                 first_name=request.form['f-name'],
-#                 last_name=request.form['l-name'],
-#                 phone=request.form['phone'],
-#                 email=request.form['email'],
-#                 destination=request.form['destination'],  # Added comma here
-#                 message=request.form['message']
-#             )
-#             # Add the Booking object to the database session & save
-#             try:
-#                 booking.save()
-#             except Exception as e:
-#                 print(e)
 
-            
-#             # Flash a success message
-#             flash('Booking was successfully submitted')
-#     return render_template('submit_booking.html')
 @app.route('/submit_booking', methods=['GET', 'POST'])
 def submit_booking():
+
+    #all packages
+    packages_submit = storage.all(Package)
+    packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
+
     if request.method == 'POST':
         if not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['destination']:
             flash('Please enter all the fields', 'error')
@@ -81,23 +63,16 @@ def submit_booking():
                 last_name=request.form['l-name'],
                 phone=request.form['phone'],
                 email=request.form['email'],
-                destination=request.form['destination'],  # Added comma here
+                package_id=request.form['destination'],  # Added comma here
                 message=request.form['message']
             )
             # Add the Booking object to the database session & save
-            try:
-                booking.save()
-            except Exception as e:
-                print(e)
-                print('Catch Error')
-                exc_type, exc_obj, exc_tb = sys.exc_info()
-                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-                print(exc_type, fname, exc_tb.tb_lineno)
 
+            booking.save()
             
             # Flash a success message
             flash('Booking was successfully submitted')
-    return render_template('submit_booking.html')
+    return render_template('submit_booking.html', packages_submit=packages_submit)
 
 
 
@@ -133,17 +108,8 @@ def register():
 
     return render_template('register.html') """
 
-# print('main')
-# user = User(
-#    name='Alshimaa Mamdouh',
-#    email='alshimaa.mamdouh.abdelaziz@gmail.com',
-#   address='6th october',
-#    phone='23447677878'
-# )
-# user.save()
 
 
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', port=5000)
     # storage.reload()
     app.run()

@@ -51,9 +51,12 @@
                             <span class="fa fa-globe"></span>
                             <select name="destination" id="destination">
                                 <option value="" disabled selected>Select a destination</option>
-                                <option value="Italy">Italy</option>
+                                {% for package in packages %}
+                                <option value="{{ package.id }}">{{ package.package_name }}</option>
+                                {% endfor %}
+                                <!-- <option value="Italy">Italy</option>
                                 <option value="France">France</option>
-                                <option value="Egypt">Egypt</option>
+                                <option value="Egypt">Egypt</option> -->
                             </select>
 
                         </div>
