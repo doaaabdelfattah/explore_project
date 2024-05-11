@@ -252,7 +252,7 @@ select {
   color: #ffd700;
 }
 
-/* ///////// Search bar ////////////// */
+/* ================ Search bar =============== */
 .hero-section {
   padding-top: 10px;
   margin-top: 50px;
@@ -276,6 +276,11 @@ select {
   /* padding-left: 20px; */
   /* display: flex; */
 }
+
+/* ================ NEW **** Search bar =============== */
+
+/* ================ Search bar =============== */
+
 .search-bar form {
   height: 80px;
 }
@@ -299,9 +304,32 @@ select {
   align-items: center;
   height: 100%;
 }
-.search-button {
-  padding: 0;
+
+/* @media screen and (max-width: 991px) .search-bar-large {
+  height: auto;
+  padding: 20px;
+} */
+
+/* ====== New search=========*/
+
+.form-container {
+  background-color: #fff;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.05);
+  height: 80px;
+  border-radius: 40px;
+  padding: 10px;
 }
+
+.search-button {
+  display: flex;
+  justify-content: center; /* Align items horizontally */
+  align-items: center; /* Align items vertically */
+}
+input::placeholder {
+  font-weight: 300;
+  font-size: 15px;
+}
+
 .search-button button {
   width: 50px; /* Adjust button width */
   height: 50px; /* Adjust button height */
@@ -317,12 +345,10 @@ select {
   background-color: var(--LightGrayColor);
 }
 
-input::placeholder {
+.search-container .destination-select {
+  border-left: 1px solid var(--LightGrayColor);
   font-weight: 300;
   font-size: 15px;
+  margin-left: 13px;
+  height: 55%;
 }
-
-/* @media screen and (max-width: 991px) .search-bar-large {
-  height: auto;
-  padding: 20px;
-} */

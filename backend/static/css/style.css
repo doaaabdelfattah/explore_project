@@ -1,4 +1,4 @@
-/* Variables */
+/* ======================== Variables  ======================== */
 :root {
   --main-color: #a26329;
   --LightGrayColor: #dedede;
@@ -7,7 +7,7 @@
   --lightbg: #f4f5f8;
 }
 
-/* Start Global Rules */
+/* ======================== Global Rules  ======================== */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -32,9 +32,7 @@ body {
   margin-top: 70px;
 }
 
-/* //////////////// */
-
-/* Navigation Bar (Fixed on all pages) */
+/* ======================== Navigation bar  ======================== */
 .navbar {
   padding-top: 3.5rem;
   /* background-color: #a26329; */
@@ -123,8 +121,7 @@ h2.title {
   transform: translateY(-7px);
 }
 
-/* //////////////// Home style ///////////// */
-/* Hero section */
+/* ======================== Home | Hero section  ======================== */
 
 .hero-text h1 {
   font-weight: 700;
@@ -134,9 +131,8 @@ h2.title {
   letter-spacing: 1px;
 }
 
-/* Search bar */
+/* ======================== Home | Search bar  ======================== */
 
-/* ///////// Search bar ////////////// */
 .hero-section {
   padding-top: 10px;
   margin-top: 50px;
@@ -162,13 +158,15 @@ h2.title {
 }
 .search-bar form {
   height: 80px;
+  padding: 10px;
 }
 .search-bar input,
 select {
-  flex: 1; /* Let input and select grow to fill available space */
+  flex: 1;
   border: 0 none;
   outline: 0;
   padding-left: 20px;
+  width: 50%;
 }
 
 .search-bar .destination-select {
@@ -185,6 +183,7 @@ select {
 }
 .search-button {
   padding: 0;
+  margin-right: 20px;
 }
 .search-button button {
   width: 50px; /* Adjust button width */
@@ -206,12 +205,14 @@ input::placeholder {
   font-size: 15px;
 }
 
-/* @media screen and (max-width: 991px) .search-bar-large {
-  height: auto;
-  padding: 20px;
+/* @media (max-width: 576px) {
+  .search-bar {
+    height: auto;
+    padding: 20px;
+  }
 } */
 
-/* ///////////    Home | Packages       ///////////// */
+/* ==================  Home | Packages    ==================== */
 
 .cards-container {
   display: flex;
@@ -227,7 +228,7 @@ input::placeholder {
   padding: 10px;
   min-height: 20em;
   overflow: hidden;
-  margin: 5px;
+  margin: 10px;
   transition: 0.3s ease;
 }
 
@@ -263,12 +264,8 @@ input::placeholder {
   margin-top: 22px;
 }
 
-/* //////////// Home | Footer Section */
+/*  ================ Home | footer section =================  */
 
-/* .footer .container {
-  margin: 20px;
-
-} */
 .footer {
   padding-top: 50px;
   padding-bottom: 10px;
