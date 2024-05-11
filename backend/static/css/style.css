@@ -3,7 +3,7 @@
   --main-color: #a26329;
   --LightGrayColor: #dedede;
   --DarkGrayColor: #999;
-  --assetcolor: #2971a2;
+  --assetcolor: #85b6a8;
   --lightbg: #f4f5f8;
 }
 
@@ -117,7 +117,7 @@ h2.title {
 }
 
 .submit-btn:hover {
-  background-color: #fff;
+  background-color: white;
   box-shadow: 0px 15px 20px rgba(144, 148, 147, 0.4);
   color: #000;
   transform: translateY(-7px);
@@ -246,7 +246,7 @@ input::placeholder {
 .packages .product-card .submit-btn {
 }
 
-/* ////////// checkout form //////////////////*/
+/* ================ checkout form ================= */
 
 .checkout-form {
   margin-top: 50px;
@@ -272,26 +272,36 @@ input::placeholder {
 .footer {
   padding-top: 50px;
   padding-bottom: 10px;
-  background-color: var(--LightGrayColor);
-  text-align: center;
+  /* background-color: var(--LightGrayColor); */
+  background-color: var(--assetcolor);
 }
 
-.footer p:not(.copyright) {
+.footer .title-footer {
   text-transform: uppercase;
-  /* border-bottom: 1px solid white; */
   font-size: 15px;
-  /* padding: 20px; */
   margin: 20px auto;
   width: fit-content;
   letter-spacing: 6px;
 }
+
+.footer img {
+  display: block;
+}
+
+.footer .text-footer {
+  text-align: left;
+  margin-top: 25px;
+  font-weight: 300;
+}
+
 .footer .social-icons i {
-  padding: 7px;
+  padding-right: 20px;
   font-size: 27px;
-  color: var(--main-color);
+  color: #000;
 }
 .footer .copyright {
-  margin-top: 50px;
+  margin-top: 25px;
+  text-align: center;
 }
 .footer .copyright span {
   font-weight: bold;
@@ -301,6 +311,12 @@ input::placeholder {
   padding: 50px;
   letter-spacing: 10px;
 }
+
+.footer .has-top-border {
+  border-top: 1px solid var(--LightGrayColor);
+  margin-top: 30px;
+}
+/* //////////////////////// */
 
 .about-section {
   padding: 30px;
@@ -316,4 +332,22 @@ input::placeholder {
 
 .review-box .icons {
   color: #ffd700;
+}
+
+/* ==================== Packages Page ==================== */
+
+.packages-hero {
+  margin-top: 35px;
+}
+.packages-hero .search-bar {
+  margin-top: 10px;
+}
+.overlay.packages {
+  height: 600px;
+  background-image: url("../images/sea.jpg");
+  background-size: cover;
+}
+
+.container.packages.all {
+  margin-top: 50px;
 }

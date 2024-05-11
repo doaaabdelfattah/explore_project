@@ -1,9 +1,9 @@
 
 
-
 import base64
 from sqlalchemy import func
-import sys, os
+import sys
+import os
 from os import getenv
 from flask import Flask, redirect, render_template, request, flash
 from models import storage
@@ -23,33 +23,29 @@ Data.user_data()
 Data.package_data()
 # Routes
 
+
 @app.route('/')
 def index():
-    
-     #all packages
+    # all packages
     packages = storage.all(Package)
     packages = sorted(packages, key=lambda k: k.package_name)
 
     # decode image
     image_list = []
-    
+
     for package in packages:
         if hasattr(package, 'image') and package.image:
-            image_list.append({'image':base64.b64encode(package.image).decode('utf-8'),
-                               'description1':package.description1,
-                               'package_name':package.package_name,
-                               'price':package.price})
+            image_list.append({'image': base64.b64encode(package.image).decode('utf-8'),
+                               'description1': package.description1,
+                               'package_name': package.package_name,
+                               'price': package.price})
 
-            
- 
     return render_template('index.html', packages=image_list, pagetitle="Home")
-
 
 
 @app.route('/submit_booking', methods=['GET', 'POST'])
 def submit_booking():
-
-    #all packages
+    # all packages
     packages_submit = storage.all(Package)
     packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
 
@@ -69,11 +65,20 @@ def submit_booking():
             # Add the Booking object to the database session & save
 
             booking.save()
-            
+
             # Flash a success message
             flash('Booking was successfully submitted')
     return render_template('submit_booking.html', packages_submit=packages_submit)
 
+
+@app.route('/packages')
+def packages():
+    return render_template('packages.html', pagetitle="Packages")
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html', pagetitle="Contact Us")
 
 
 """ @app.route('/search', methods=['GET', 'POST'])
@@ -107,7 +112,6 @@ def register():
         return redirect('register.html')
 
     return render_template('register.html') """
-
 
 
 if __name__ == '__main__':
