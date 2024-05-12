@@ -1,6 +1,7 @@
 
 
 import base64
+import ssl
 from sqlalchemy import func
 import sys
 import os
@@ -12,6 +13,9 @@ from models.booking import Booking
 from models.package import Package
 from models.base_model import Base, BaseModel
 from models.data import Data
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -85,6 +89,32 @@ def submit_booking():
 
             booking.save()
 
+            """ ############# Sending Email##########################
+
+            # Email and password for Gmail account
+            sender_email = "bookingonline265@gmail.com"
+            password = "glbg hlkl mlts urat"
+            # Recipient email
+            
+            receiver_email = "alshimaa.mamdouh.abdelaziz@gmail.com"
+            # Create a multipart message and set headers
+            message = MIMEMultipart()
+            message["From"] = sender_email
+            message["To"] = receiver_email
+            message["Subject"] = "New Booking"
+            # Add body to email
+            body = "first_name"+ request.form['f-name']+"last_name"+request.form['l-name']+"phone"+request.form['phone']+"email"+request.form['email']+"package_id"+request.form['destination']+"message"+request.form['message']
+            
+            message.attach(MIMEText(body, "plain"))
+
+            # Connect to the SMTP server
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:
+                # Encrypt the connection
+                server.starttls()
+                # Log in to the server
+                server.login(sender_email, password)
+                # Send email
+                server.send_message(message) """
             # Flash a success message
             flash('Booking was successfully submitted')
     return render_template('submit_booking.html', packages_submit=packages_submit)
