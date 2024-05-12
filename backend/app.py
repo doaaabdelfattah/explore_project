@@ -24,7 +24,7 @@ Data.package_data()
 # Routes
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     # all packages
     packages = storage.all(Package)
@@ -39,6 +39,25 @@ def index():
                                'description1': package.description1,
                                'package_name': package.package_name,
                                'price': package.price})
+            
+    if request.method == 'POST':
+        search_term = request.form['destination']
+        # Filter packages by name containing the search term
+        filtered_packages = [package for package in packages if search_term.lower(
+        ) in package.package_name.lower()]
+
+        image_list2 = []
+
+        for pc in filtered_packages:
+            if hasattr(pc, 'image') and pc.image:
+                image_list2.append({'image': base64.b64encode(pc.image).decode('utf-8'),
+                               'description1': pc.description1,
+                               'package_name': pc.package_name,
+                               'price': pc.price})
+
+
+        
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages  )
 
     return render_template('index.html', packages=image_list, pagetitle="Home")
 
@@ -73,7 +92,31 @@ def submit_booking():
 
 @app.route('/packages')
 def packages():
-    return render_template('packages.html', pagetitle="Packages")
+    #all packages for the dropdown list
+    packages_reg = storage.all(Package)
+    packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
+    image_list2 = []
+
+    if request.method == 'POST':
+        #take search item
+        search_term = request.form['destination']
+        # Filter packages by name containing the search term
+        filtered_packages = [package for package in packages if search_term.lower(
+        ) in package.package_name.lower()]
+
+        #decode image
+        for pc in filtered_packages:
+            if hasattr(pc, 'image') and pc.image:
+                image_list2.append({'image': base64.b64encode(pc.image).decode('utf-8'),
+                               'description1': pc.description1,
+                               'package_name': pc.package_name,
+                               'price': pc.price})
+
+
+        
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg )
+    
+    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg)
 
 
 @app.route('/contact')
@@ -81,18 +124,9 @@ def contact():
     return render_template('contact.html', pagetitle="Contact Us")
 
 
-""" @app.route('/search', methods=['GET', 'POST'])
-def search():
-    if request.method == 'POST':
-        search_term = request.form.get('search_term')
-        packages = storage.all(Package).values()
-        # Filter packages by name containing the search term
-        filtered_packages = [package for package in packages if search_term.lower(
-        ) in package.package_name.lower()]
-        return render_template('index.html', packages=filtered_packages)
-    return render_template('index.html') """
-
-
+    
+        
+    
 """ @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
