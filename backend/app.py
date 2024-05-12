@@ -89,23 +89,37 @@ def submit_booking():
 
             booking.save()
 
-            """ ############# Sending Email##########################
+           ############# Sending Email##########################
 
             # Email and password for Gmail account
-            sender_email = "bookingonline265@gmail.com"
+            sender_email = "booking.online.alx@gmail.com"
             password = "glbg hlkl mlts urat"
             # Recipient email
             
-            receiver_email = "alshimaa.mamdouh.abdelaziz@gmail.com"
+            receiver_email1 = "alshimaa.mamdouh.abdelaziz@gmail.com"
+            receiver_email2 = "doaa.abdelfattah@gmail.com"
             # Create a multipart message and set headers
-            message = MIMEMultipart()
-            message["From"] = sender_email
-            message["To"] = receiver_email
-            message["Subject"] = "New Booking"
+            message1 = MIMEMultipart()
+            message1["From"] = sender_email
+            message1["To"] = receiver_email1
+            message1["Subject"] = "New Booking"
+            message2 = MIMEMultipart()
+            message2["From"] = sender_email
+            message2["To"] = receiver_email2
+            message2["Subject"] = "Confirm Booking"
             # Add body to email
-            body = "first_name"+ request.form['f-name']+"last_name"+request.form['l-name']+"phone"+request.form['phone']+"email"+request.form['email']+"package_id"+request.form['destination']+"message"+request.form['message']
-            
-            message.attach(MIMEText(body, "plain"))
+            body1 = (
+    "First Name: " + request.form['f-name'] + "\n" +
+    "Last Name: " + request.form['l-name'] + "\n" +
+    "Phone No: " + request.form['phone'] + "\n" +
+    "Email: " + request.form['email'] + "\n" +
+    "Choosed Package: " + request.form['destination'] + "\n" +
+    "Message: " + request.form['message']
+)
+            body2 = ("Your Booking confirmed please wait till the admin contact you" +"\n" +
+                     "Regards," +"\n" + "Online Booking Admin")
+            message1.attach(MIMEText(body1, "plain"))
+            message2.attach(MIMEText(body2, "plain"))
 
             # Connect to the SMTP server
             with smtplib.SMTP("smtp.gmail.com", 587) as server:
@@ -114,7 +128,8 @@ def submit_booking():
                 # Log in to the server
                 server.login(sender_email, password)
                 # Send email
-                server.send_message(message) """
+                server.send_message(message1) 
+                server.send_message(message2) 
             # Flash a success message
             flash('Booking was successfully submitted')
     return render_template('submit_booking.html', packages_submit=packages_submit)
