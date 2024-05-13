@@ -97,7 +97,7 @@ def submit_booking():
             # Recipient email
             
             receiver_email1 = "alshimaa.mamdouh.abdelaziz@gmail.com"
-            receiver_email2 = "doaa.abdelfattah@gmail.com"
+            receiver_email2 = "alshimaa.mamdouh.abdelaziz@gmail.com"
             # Create a multipart message and set headers
             message1 = MIMEMultipart()
             message1["From"] = sender_email
@@ -169,28 +169,6 @@ def contact():
     return render_template('contact.html', pagetitle="Contact Us")
 
 
-    
-        
-    
-""" @app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        address = request.form['address']
-        phone = request.form['phone']
-
-        # Create a new user instance
-        new_user = User(name=name, email=email, address=address, phone=phone)
-
-        # Add the user to the database
-        storage.new(new_user)
-        storage.save()
-
-        # Redirect to the home page or any other page after registration
-        return redirect('register.html')
-
-    return render_template('register.html') """
 
 
 if __name__ == '__main__':
