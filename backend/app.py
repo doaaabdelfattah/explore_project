@@ -13,6 +13,7 @@ from models.booking import Booking
 from models.package import Package
 from models.base_model import Base, BaseModel
 from models.data import Data
+from models.all_packages import GetData
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -31,7 +32,7 @@ Data.package_data()
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # all packages
-    packages = storage.all(Package)
+    packages = GetData.all()
     packages = sorted(packages, key=lambda k: k.package_name)
 
     # decode image
@@ -69,7 +70,7 @@ def index():
 @app.route('/submit_booking', methods=['GET', 'POST'])
 def submit_booking():
     # all packages
-    packages_submit = storage.all(Package)
+    packages_submit = GetData.all()
     packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
 
     if request.method == 'POST':
@@ -138,7 +139,7 @@ def submit_booking():
 @app.route('/packages')
 def packages():
     #all packages for the dropdown list
-    packages_reg = storage.all(Package)
+    packages_reg = GetData.all()
     packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
     image_list2 = []
 
@@ -146,8 +147,7 @@ def packages():
         #take search item
         search_term = request.form['destination']
         # Filter packages by name containing the search term
-        filtered_packages = [package for package in packages if search_term.lower(
-        ) in package.package_name.lower()]
+        filtered_packages = GetData.filtered(search_term)
 
         #decode image
         for pc in filtered_packages:
