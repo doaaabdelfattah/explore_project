@@ -36,14 +36,7 @@ def index():
     packages = sorted(packages, key=lambda k: k.package_name)
 
     # decode image
-    image_list = []
-
-    for package in packages:
-        if hasattr(package, 'image') and package.image:
-            image_list.append({'image': base64.b64encode(package.image).decode('utf-8'),
-                               'description1': package.description1,
-                               'package_name': package.package_name,
-                               'price': package.price})
+    image_list = GetData.decode(packages)
             
     if request.method == 'POST':
         search_term = request.form['destination']
@@ -51,17 +44,8 @@ def index():
         filtered_packages = [package for package in packages if search_term.lower(
         ) in package.package_name.lower()]
 
-        image_list2 = []
+        image_list2 = GetData.decode(filtered_packages)
 
-        for pc in filtered_packages:
-            if hasattr(pc, 'image') and pc.image:
-                image_list2.append({'image': base64.b64encode(pc.image).decode('utf-8'),
-                               'description1': pc.description1,
-                               'package_name': pc.package_name,
-                               'price': pc.price})
-
-
-        
         return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages  )
 
     return render_template('index.html', packages=image_list, pagetitle="Home")
@@ -130,7 +114,10 @@ def submit_booking():
                 server.login(sender_email, password)
                 # Send email
                 server.send_message(message1) 
-                server.send_message(message2) 
+                server.send_message(message2)
+
+       ######################## END Of Sending Email ###################
+            
             # Flash a success message
             flash('Booking was successfully submitted')
     return render_template('submit_booking.html', packages_submit=packages_submit)
