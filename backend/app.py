@@ -93,7 +93,7 @@ def submit_booking():
 
             # Email and password for Gmail account
             sender_email = "booking.online.alx@gmail.com"
-            password = "glbg hlkl mlts urat"
+            password = "glbg hlkl mlts urat" #using app password
             # Recipient email
             
             receiver_email1 = "alshimaa.mamdouh.abdelaziz@gmail.com"
