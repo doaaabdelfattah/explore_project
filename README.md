@@ -36,6 +36,13 @@ To get a local copy up and running, follow these steps:
 - Back-end
   - Python with Flask framework, mysql database
 
+## 💻 Pages Included:
+
+- Home Page
+- Booking
+- Packages
+- Contact Us
+
 ## ❃ Authors
 
 - Doaa Abdelfattah (Front-end)
