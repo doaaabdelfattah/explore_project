@@ -2,7 +2,7 @@
 
 # Introducing “Explore” — Your Ultimate Travel Agency Solution
 
-[EXplore](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/)Project is a web application designed to simplify the process of finding and booking travel packages to various destinations around the world. The primary goal is to provide users with an intuitive and seamless platform where they can explore travel options, get detailed information about each destination, and make bookings with ease.
+[EXplore](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/) Project is a web application designed to simplify the process of finding and booking travel packages to various destinations around the world. The primary goal is to provide users with an intuitive and seamless platform where they can explore travel options, get detailed information about each destination, and make bookings with ease.
 
 ## 🎯 Who “Explore” Was Created For
 
@@ -42,5 +42,5 @@ To get a local copy up and running, follow these steps:
   [LinkedIn](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/)
   [GitHub](https://github.com/doaaabdelfattah)
 - Alshaimaa Mamdouh (Back-end)
-  [LinkedIn](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/)
-  [GitHub](https://github.com/doaaabdelfattah)
+  [LinkedIn](https://www.linkedin.com/in/alshimaa-abdelaziz-04963b142/)
+  [GitHub](https://github.com/alshimaamamdouh)
