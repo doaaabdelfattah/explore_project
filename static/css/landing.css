@@ -1,0 +1,132 @@
+/* Variables */
+:root {
+  --main-color: #a26329;
+  --LightGrayColor: #dedede;
+  --DarkGrayColor: #999;
+  --assetcolor: #2971a2;
+  --lightbg: #f4f5f8;
+}
+
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+.home {
+  width: 100%;
+  background-color: #f4f5f8;
+}
+.container {
+  position: relative;
+  z-index: 999;
+}
+
+.section-title {
+  font-size: 45px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 70px;
+}
+
+/* Navigation Bar (Fixed on all pages) */
+.navbar {
+  padding-top: 3.5rem;
+  /* background-color: #a26329; */
+  border-bottom: var(--DarkGrayColor) solid 1px;
+}
+.nav-link {
+  color: black;
+  font-size: 15px;
+  margin-left: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.nav-link:hover {
+  color: var(--main-color);
+}
+
+/* Content of Page */
+
+.container.hero {
+  padding: 20px;
+}
+
+.hero img {
+  width: 100%;
+}
+.hero .text {
+  margin-top: 70px;
+}
+
+.hero .text p {
+  padding: 20px;
+}
+
+.submit-btn {
+  width: 70%;
+  margin: 20px;
+  padding: 12px 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  /* margin-top: 10px; */
+}
+
+.submit-btn:hover {
+  background-color: #fff;
+  box-shadow: 0px 15px 20px rgba(144, 148, 147, 0.4);
+  color: #000;
+  transform: translateY(-7px);
+}
+
+.submit-btn i {
+  font-size: 1.5em;
+}
+
+.question-section {
+  margin-top: 30px;
+}
+.question-section .owner {
+  margin-top: 20px;
+}
+.question-section .owner h5 {
+  font-size: 1.1em;
+}
+
+.question-section .links {
+  margin: 10px;
+  padding: 5px;
+}
+
+.question-section .links i {
+  color: #a26329;
+  font-size: 1.5em;
+  margin-left: 10px;
+  transition: all 0.3s ease 0s;
+}
+
+.question-section .links i:hover {
+  transform: translateY(-7px);
+}
+
+.submit-btn-a {
+  display: block;
+  text-decoration: none;
+}
