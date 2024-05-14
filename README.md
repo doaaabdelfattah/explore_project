@@ -2,10 +2,29 @@
 
 # Introducing “Explore” — Your Ultimate Travel Agency Solution
 
-In a world where travel is more accessible than ever, travel agencies need modern tools to stand out and provide exceptional service to their clients. “Explore” is a comprehensive website solution designed specifically for travel agencies. Its primary purpose is to streamline the booking process, showcase featured packages, and provide an intuitive user experience for both travel agents and customers.
-With a sleek design and powerful backend, “Explore” aims to transform how travel agencies operate, making it easier for them to manage their offerings and for travelers to find and book their dream vacations.
+[EXplore](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/) Explore is a web application designed to help users find and book travel packages to various destinations around the world.
 
-## Technologies used:
+## Who “Explore” Was Created For
+
+“Explore” was created for small to medium-sized travel agencies looking to upgrade their online presence. These agencies often struggle with outdated websites and manual booking processes, which can lead to inefficiencies and lost business opportunities
+
+## ✅ Features
+
+- **Search Functionality**: Users can search for destinations and travel packages.
+- **Responsive Design**: The website is fully responsive, ensuring a great user experience on both desktop and mobile devices.
+- **Interactive Navigation**: Easy-to-use navigation bar with quick links to all major sections of the website.
+
+![Alt text](static/images/explore%20screenshot.jpg)
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these steps:
+
+1. Clone the repository
+2. Install dependencies
+3. Run the application
+
+## 💻 Technologies used:
 
 - Front-end
 
@@ -14,4 +33,11 @@ With a sleek design and powerful backend, “Explore” aims to transform how tr
 - Back-end
   - Python with Flask framework, mysql database
 
-![Alt text](static/images/explore%20screenshot.jpg)
+## ❃ Authors
+
+- Doaa Abdelfattah (Front-end)
+  [LinkedIn](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/)
+  [GitHub](https://github.com/doaaabdelfattah)
+- Alshaimaa Mamdouh (Back-end)
+  [LinkedIn](https://www.linkedin.com/in/doaa-abd-elfattah-41596a11a/)
+  [GitHub](https://github.com/doaaabdelfattah)
