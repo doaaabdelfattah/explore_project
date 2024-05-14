@@ -8,7 +8,10 @@ With a sleek design and powerful backend, “Explore” aims to transform how tr
 ## Technologies used:
 
 - Front-end
-  html, css, Bootstrap
+
+  - html, css, Bootstrap
 
 - Back-end
-  Python with Flask framework, mysql database
+  - Python with Flask framework, mysql database
+
+![Alt text](static/images/explore%20screenshot.jpg)
