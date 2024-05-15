@@ -3,28 +3,38 @@
 
 {% block body %}
 <!-- =================== *** Start *** ==================== -->
-<div class="overlay-home">
-    <div class="overlay-gradient"></div>
+
+
+
+<div class="overlay-home overlay">
     <div class="container">
         <!-- =========== Navigation Bar (Fixed) ============= -->
         <nav class="navbar navbar-expand-lg">
-            <a class="navbar-brand" href="/">
-                <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy"></a>
-            <a href="#nav-menu" data-toggle="collapse" class=" bg-dark navbar-toggler">
-                <span class="navbar-toggler-icon"></span>
-            </a>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy"></a>
 
-            <div id="nav-menu" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="/packages" class="nav-link">Packages</a></li>
-                    <li class="nav-item"><a href="/submit_booking" class="nav-link">Book Now</a></li>
-                    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="col-md-3 text-end">
-                    <a href="/login" class="submit-btn-a"> <button class="submit-btn">
-                            Sign in
-                        </button></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="/packages" class="nav-link">Packages</a></li>
+                        <li class="nav-item"><a href="/submit_booking" class="nav-link">Book Now</a></li>
+                        <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                    </ul>
+                    <div class="col-md-3 d-flex justify-content-end">
+                        <a href="/login" class="submit-btn-a">
+                            <button class="submit-btn">
+                                Sign in/Up
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -84,20 +94,20 @@
     <h1 class="section-title">Featured Packages</h1>
     <div class="cards-container">
         <!-- Card No. 1 -->
-        <div class="content row">
+        <div class="row">
             {% for package in packages %}
-            <div class="col card product-card">
-                <div class='image'>
-                    <img src="data:image/jpeg;base64,{{ package.image }}" class="">
-                </div>
+            <div class="col-lg-4">
+                <div class="card product-card">
+                    <img class="image" src="data:image/jpeg;base64,{{ package.image }}" class="">
 
-                <div class="card-body">
-                    <h5 class="card-title"><strong>{{ package.package_name }}</strong></h5>
-                    <p class="card-text">{{ package.description1 }}</p>
-                </div>
-                <div class="row justify-content-around mb-3 align-items-center">
-                    <button class="btn submit-btn">Details</button>
-                    <h3 class="mb-0">{{ package.price }}</h3>
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>{{ package.package_name }}</strong></h5>
+                        <p class="card-text">{{ package.description1 }}</p>
+                    </div>
+                    <div class="row justify-content-around mb-3 align-items-center">
+                        <button class="btn submit-btn">Details</button>
+                        <h3 class="mb-0">{{ package.price }}</h3>
+                    </div>
                 </div>
             </div>
             {% endfor %}
