@@ -95,7 +95,7 @@
     <div class="cards-container">
         <!-- Card No. 1 -->
         <div class="row">
-            {% for package in packages %}
+            {% for package in packages[:3] %}
             <div class="col-lg-4">
                 <div class="card product-card">
                     <img class="image" src="data:image/jpeg;base64,{{ package.image }}" class="">
@@ -179,21 +179,46 @@
             </div>
             <div class="col-lg-4">
                 <p class="title-footer">
-                    Let's Get Social
+                    Quick links
                 </p>
-                <div class="social-icons">
+                <ul class="quick-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/packages">Packages</a></li>
+                    <li><a href="/submit_booking">Book Now</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+                <!-- <div class="social-icons">
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-twitter"></i>
                     <i class="fa-brands fa-square-instagram"></i>
                     <i class="fa-brands fa-linkedin"></i>
-                </div>
+                </div> -->
 
             </div>
             <div class="col-lg-4 ">
                 <p class="title-footer">
-                    Contact Info
+                    Get in touch
                 </p>
                 <div class=" contact-info">
+                    <div class="item">
+                        <div class="address row">
+                            <i class=" col-1 fa-solid fa-location-dot"></i>
+                            <p class="col">1616 Broadway NY, New York 10001
+                                <br>United States of America.
+                            </p>
+                        </div>
+                        <div class="phone row">
+                            <i class="col-1 fa-solid fa-phone"></i>
+                            <p class="col phone">+1 203 123 0606</p>
+                        </div>
+                        <div class="email row">
+                            <i class="col-1 fa-solid fa-envelope"></i>
+                            <p class="col mail">info@hotel.com</p>
+
+                        </div>
+
+
+                    </div>
                 </div>
 
             </div>

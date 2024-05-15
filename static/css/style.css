@@ -35,9 +35,11 @@ body {
 /* ======================== Navigation bar  ======================== */
 .navbar {
   padding-top: 3.5rem;
+  z-index: 90;
   /* background-color: #a26329; */
   /* border-bottom: var(--DarkGrayColor) solid 1px; */
 }
+
 .nav-link {
   color: black;
   font-size: 15px;
@@ -92,9 +94,6 @@ h2.title {
   );
   z-index: 1;
   pointer-events: none; /* Allows interaction with elements below the overlay */
-}
-
-.container-fluid {
 }
 
 .contact h2 {
@@ -279,15 +278,16 @@ input::placeholder {
   padding-top: 50px;
   padding-bottom: 10px;
   /* background-color: var(--LightGrayColor); */
-  background-color: var(--assetcolor);
+  background-color: var(--lightbg);
 }
 
 .footer .title-footer {
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 20px;
   margin: 20px auto;
   width: fit-content;
   letter-spacing: 6px;
+  font-weight: 800;
 }
 
 .footer img {
@@ -305,6 +305,31 @@ input::placeholder {
   font-size: 27px;
   color: #000;
 }
+
+/* Quick Links Styles */
+.quick-links {
+  list-style: none; /* Remove default list styles */
+  padding: 0; /* Remove default padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quick-links li {
+  /* margin-right: 20px; Add spacing between list items */
+}
+
+.quick-links a {
+  color: #333; /* Set link text color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s; /* Add smooth color transition */
+  text-align: left;
+}
+
+.quick-links a:hover {
+  color: var(--main-color); /* Change text color on hover */
+}
+
 .footer .copyright {
   margin-top: 25px;
   text-align: center;
