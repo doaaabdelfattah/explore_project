@@ -38,9 +38,9 @@ class Data():
     # packages
 
     def package_data():
-        path1 = 'layout/images/rome.jpg'
-        path2 = 'layout/images/egypt.jpg'
-        path3 = 'layout/images/france.jpg'
+        path1 = 'static/images/rome.jpg'
+        path2 = 'static/images/egypt.jpg'
+        path3 = 'static/images/france.jpg'
 
         with open(path1, 'rb') as f:
             # binary1 = base64.b64encode(f.read())

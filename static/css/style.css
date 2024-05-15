@@ -346,4 +346,30 @@ input::placeholder {
 
 .container.packages.all {
   margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* ========================== login Page ============================== */
+
+.overlay.login {
+  height: 600px;
+  background-color: var(--main-color);
+  background-image: url("../images/desert.jpg");
+  background-size: cover;
+}
+
+.container-login {
+  padding-top: 70px;
+}
+
+/* ========================== Sign up Page ============================== */
+
+.error {
+  border-color: rgb(167, 21, 21);
+}
+
+.error-message {
+  color: rgb(167, 21, 21);
+  font-size: 12px;
+  margin-top: 5px;
 }

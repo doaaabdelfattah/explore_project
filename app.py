@@ -37,7 +37,7 @@ def index():
 
     # decode image
     image_list = GetData.decode(packages)
-            
+
     if request.method == 'POST':
         search_term = request.form['destination']
         # Filter packages by name containing the search term
@@ -46,7 +46,7 @@ def index():
 
         image_list2 = GetData.decode(filtered_packages)
 
-        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages  )
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages)
 
     return render_template('index.html', packages=image_list, pagetitle="Home")
 
@@ -78,11 +78,11 @@ def submit_booking():
 
             # Email and password for Gmail account
             sender_email = "booking.online.alx@gmail.com"
-            password = "glbg hlkl mlts urat" #using app password
+            password = "glbg hlkl mlts urat"  # using app password
             # Recipient email
-            
+
             receiver_email1 = "alshimaa.mamdouh.abdelaziz@gmail.com"
-            receiver_email2 = "alshimaa.mamdouh.abdelaziz@gmail.com"
+            receiver_email2 = "doaa.abdalfattah@gmail.com"
             # Create a multipart message and set headers
             message1 = MIMEMultipart()
             message1["From"] = sender_email
@@ -94,15 +94,15 @@ def submit_booking():
             message2["Subject"] = "Confirm Booking"
             # Add body to email
             body1 = (
-    "First Name: " + request.form['f-name'] + "\n" +
-    "Last Name: " + request.form['l-name'] + "\n" +
-    "Phone No: " + request.form['phone'] + "\n" +
-    "Email: " + request.form['email'] + "\n" +
-    "Choosed Package: " + request.form['destination'] + "\n" +
-    "Message: " + request.form['message']
-)
-            body2 = ("Your Booking confirmed please wait till the admin contact you" +"\n" +
-                     "Regards," +"\n" + "Online Booking Admin")
+                "First Name: " + request.form['f-name'] + "\n" +
+                "Last Name: " + request.form['l-name'] + "\n" +
+                "Phone No: " + request.form['phone'] + "\n" +
+                "Email: " + request.form['email'] + "\n" +
+                "Choosed Package: " + request.form['destination'] + "\n" +
+                "Message: " + request.form['message']
+            )
+            body2 = ("Your Booking confirmed please wait till the admin contact you" + "\n" +
+                     "Regards," + "\n" + "Online Booking Admin")
             message1.attach(MIMEText(body1, "plain"))
             message2.attach(MIMEText(body2, "plain"))
 
@@ -113,11 +113,11 @@ def submit_booking():
                 # Log in to the server
                 server.login(sender_email, password)
                 # Send email
-                server.send_message(message1) 
+                server.send_message(message1)
                 server.send_message(message2)
 
        ######################## END Of Sending Email ###################
-            
+
             # Flash a success message
             flash('Booking was successfully submitted')
     return render_template('submit_booking.html', packages_submit=packages_submit)
@@ -125,37 +125,43 @@ def submit_booking():
 
 @app.route('/packages')
 def packages():
-    #all packages for the dropdown list
+    # all packages for the dropdown list
     packages_reg = GetData.all()
     packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
     image_list2 = []
 
     if request.method == 'POST':
-        #take search item
+        # take search item
         search_term = request.form['destination']
         # Filter packages by name containing the search term
         filtered_packages = GetData.filtered(search_term)
 
-        #decode image
+        # decode image
         for pc in filtered_packages:
             if hasattr(pc, 'image') and pc.image:
                 image_list2.append({'image': base64.b64encode(pc.image).decode('utf-8'),
-                               'description1': pc.description1,
-                               'package_name': pc.package_name,
-                               'price': pc.price})
+                                    'description1': pc.description1,
+                                    'package_name': pc.package_name,
+                                    'price': pc.price})
 
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg)
 
-        
-        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg )
-    
     return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg)
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
     return render_template('contact.html', pagetitle="Contact Us")
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html', pagetitle="Login/Register")
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    return render_template('signup.html', pagetitle="Sign UP")
 
 
 if __name__ == '__main__':
