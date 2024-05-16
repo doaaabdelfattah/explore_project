@@ -36,7 +36,7 @@
                             <h3>Sign In/Register</h3>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <!-- <form action="/login" method="post" id="loginForm" class="checkout" >
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address/Username</label>
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
@@ -53,7 +53,24 @@
                                     <label class="form-check-label" for="rememberMe">Remember me</label>
                                 </div>
                                 <button type="submit" class="btn submit-btn w-100">Sign In</button>
+                            </form> -->
+                            <form action="/login" method="post" id="loginForm" class="checkout">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email address/Username</label>
+                                    <input type="email" class="form-control" id="email" name="username" aria-describedby="emailHelp" required>
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                                </div>
+                                <button type="submit" class="btn submit-btn w-100">Sign In</button>
                             </form>
+                            
                             <div id="signup" class="form-text">Not a member? <a href="/signup"> Signup Now! </a> </div>
 
                         </div>

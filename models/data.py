@@ -15,6 +15,11 @@ from models.base_model import Base, BaseModel
 
 
 class Data():
+    def get_user(user_name):
+        # Query the database for the user by username
+        user = User.query.filter_by(email=user_name).first()
+        return user
+        
     # users
     def user_data():
         user1 = User(

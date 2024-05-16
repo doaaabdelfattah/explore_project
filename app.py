@@ -6,7 +6,7 @@ from sqlalchemy import func
 import sys
 import os
 from os import getenv
-from flask import Flask, redirect, render_template, request, flash
+from flask import Flask, redirect, render_template, request, flash, session, url_for
 from models import storage
 from models.user import User
 from models.booking import Booking
@@ -27,6 +27,7 @@ app.secret_key = 'abcdefg123456'
 Data.user_data()
 Data.package_data()
 # Routes
+
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -184,14 +185,55 @@ def contact():
     return render_template('contact.html', pagetitle="Contact Us")
 
 
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    print(request.form)
+    if request.method == 'POST':
+        if not request.form['f-name'] or not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['password'] or not request.form['username']:
+            flash('Please enter all the fields', 'error')
+        elif request.form['password'] != request.form['confirmPassword']:
+            flash('password nt matched', 'error')
+
+        else:
+            #print("hello save user")
+            user = User(
+            name=request.form['f-name'] +" "+request.form['l-name'],
+            username=request.form['username'],
+            email=request.form['email'],
+            address="any thing",
+            password=request.form['password'],
+            phone=request.form['phone']
+            )
+            user.save()
+            flash('Account created successfully. Please sign in.', 'success')
+            return render_template('login.html', pagetitle="Login/Register")
+    
+    return render_template('signup.html', pagetitle="Sign Up")
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = Data.get_user(username)
+        if user and user.password == password:
+            session['user_id'] = user.id
+            session['user_name'] = user.name
+            session['user_email'] = user.email
+            
+            flash('Logged in successfully!', 'success')
+            # all packages
+            packages = GetData.all()
+            packages = sorted(packages, key=lambda k: k.package_name)
+            # decode image
+            image_list = GetData.decode(packages)
+            return render_template('index.html', packages=image_list, pagetitle="Home")
+        else:
+            flash('Invalid username or password. Please try again.', 'error')
     return render_template('login.html', pagetitle="Login/Register")
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    return render_template('signup.html', pagetitle="Sign UP")
 
 
 if __name__ == '__main__':
