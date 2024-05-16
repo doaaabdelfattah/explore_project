@@ -146,6 +146,41 @@ def packages():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == "POST":
+        ############# Sending Email##########################
+
+            # Email and password for Gmail account
+            sender_email = "booking.online.alx@gmail.com"
+            password = "glbg hlkl mlts urat"  # using app password
+            # Recipient email
+            print (request.form)
+
+            receiver_email = request.form['email']
+            # Create a multipart message and set headers
+            message = MIMEMultipart()
+            message["From"] = sender_email
+            message["To"] = receiver_email
+            message["Subject"] = "Conact us request"
+           
+            # Add body to email
+            body = (
+                "First Name: " + request.form['f-name'] + "\n" +
+                "Last Name: " + request.form['l-name'] + "\n" +
+                "Phone No: " + request.form['phone'] + "\n" +
+                "Message: " + request.form['message']
+            )
+            message.attach(MIMEText(body, "plain"))
+
+            # Connect to the SMTP server
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:
+                # Encrypt the connection
+                server.starttls()
+                # Log in to the server
+                server.login(sender_email, password)
+                # Send email
+                server.send_message(message)
+
+       ######################## END Of Sending Email ###################
     return render_template('contact.html', pagetitle="Contact Us")
 
 
