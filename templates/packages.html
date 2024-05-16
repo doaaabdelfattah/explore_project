@@ -89,7 +89,7 @@
   <div class="cards-container">
     <!-- Card No. 1 -->
     <div class="content row">
-      {% for package in packages %}
+      {% for package in filtered_packages %}
       <div class="col card product-card">
         <div class="image">
           <img src="data:image/jpeg;base64,{{ package.image }}" class="" />

@@ -137,12 +137,7 @@ def packages():
         filtered_packages = GetData.filtered(search_term)
 
         # decode image
-        for pc in filtered_packages:
-            if hasattr(pc, 'image') and pc.image:
-                image_list2.append({'image': base64.b64encode(pc.image).decode('utf-8'),
-                                    'description1': pc.description1,
-                                    'package_name': pc.package_name,
-                                    'price': pc.price})
+        image_list2 = GetData.decode(filtered_packages)
 
         return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg)
 
