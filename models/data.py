@@ -8,18 +8,21 @@ from sqlalchemy import func
 from os import getenv
 from models import storage
 import uuid
-from models.user import User
 from models.booking import Booking
 from models.package import Package
+from models.user import User
 from models.base_model import Base, BaseModel
 
 
 class Data():
-    def get_user(user_name):
-        # Query the database for the user by username
-        user = User.query.filter_by(email=user_name).first()
-        return user
-        
+    @staticmethod
+    def get_user(filter_email):
+        users = storage.all(User)
+        # Find the first user with email containing the filter email
+        for user in users:
+            if filter_email.lower() in user.email.lower():
+                return user
+        return None  # Return None if no user matches the filter criteria
     # users
     def user_data():
         user1 = User(
