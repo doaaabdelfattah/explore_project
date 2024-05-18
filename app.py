@@ -39,6 +39,12 @@ def index():
     # decode image
     image_list = GetData.decode(packages)
 
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
+
     if request.method == 'POST':
         search_term = request.form['destination']
         # Filter packages by name containing the search term
@@ -47,9 +53,9 @@ def index():
 
         image_list2 = GetData.decode(filtered_packages)
 
-        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages)
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages, user_name=user_name)
 
-    return render_template('index.html', packages=image_list, pagetitle="Home")
+    return render_template('index.html', packages=image_list, pagetitle="Home", user_name=user_name)
 
 
 @app.route('/submit_booking', methods=['GET', 'POST'])
@@ -57,6 +63,13 @@ def submit_booking():
     # all packages
     packages_submit = GetData.all()
     packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
+
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
+
 
     if request.method == 'POST':
         if not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['destination']:
@@ -121,11 +134,16 @@ def submit_booking():
 
             # Flash a success message
             flash('Booking was successfully submitted')
-    return render_template('submit_booking.html', packages_submit=packages_submit)
+    return render_template('submit_booking.html', packages_submit=packages_submit, user_name=user_name)
 
 
 @app.route('/packages')
 def packages():
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
     # all packages for the dropdown list
     packages_reg = GetData.all()
     packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
@@ -140,13 +158,19 @@ def packages():
         # decode image
         image_list2 = GetData.decode(filtered_packages)
 
-        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg)
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_name)
 
-    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg)
+    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_name)
 
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
+
     if request.method == "POST":
         ############# Sending Email##########################
 
@@ -182,12 +206,17 @@ def contact():
                 server.send_message(message)
 
        ######################## END Of Sending Email ###################
-    return render_template('contact.html', pagetitle="Contact Us")
+    return render_template('contact.html', pagetitle="Contact Us", user_name=user_name)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    print(request.form)
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
+
     if request.method == 'POST':
         if not request.form['f-name'] or not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['password'] or not request.form['username']:
             flash('Please enter all the fields', 'error')
@@ -208,11 +237,17 @@ def signup():
             flash('Account created successfully. Please sign in.', 'success')
             return render_template('login.html', pagetitle="Login/Register")
     
-    return render_template('signup.html', pagetitle="Sign Up")
+    return render_template('signup.html', pagetitle="Sign Up", user_name=user_name)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -228,12 +263,23 @@ def login():
             packages = sorted(packages, key=lambda k: k.package_name)
             # decode image
             image_list = GetData.decode(packages)
-            return render_template('index.html', packages=image_list, pagetitle="Home")
+            return render_template('index.html', packages=image_list, pagetitle="Home", user_name=user.name)
         else:
             flash('Invalid username or password. Please try again.', 'error')
-    return render_template('login.html', pagetitle="Login/Register")
+    return render_template('login.html', pagetitle="Login/Register", user_name=user_name)
 
-
+@app.route('/logout')
+def logout():
+    # Clear the user's session
+    session.pop('user_id', None)
+    session.pop('user_name', None)
+    session.pop('user_email', None)
+    # all packages
+    packages = GetData.all()
+    packages = sorted(packages, key=lambda k: k.package_name)
+    # decode image
+    image_list = GetData.decode(packages)
+    return render_template('index.html', packages=image_list, pagetitle="Home", user_name=None)
 
 
 if __name__ == '__main__':

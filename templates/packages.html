@@ -23,12 +23,17 @@
                   <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
               </ul>
               <div class="col-md-3 d-flex justify-content-end">
-                  <a href="/login" class="submit-btn-a">
-                      <button class="submit-btn">
-                          Sign in/Up
-                      </button>
-                  </a>
-              </div>
+                {% if user_name %}
+                <li>Welcome, {{ user_name }}!</li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                <a href="/login" class="submit-btn-a">
+                    <button class="submit-btn">
+                        Sign in/Up
+                    </button>
+                </a>
+                {% endif %}
+            </div>
           </div>
       </div>
   </nav>
