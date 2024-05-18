@@ -24,7 +24,6 @@ app.secret_key = 'abcdefg123456'
 # app.debug = True
 
 
-Data.user_data()
 Data.package_data()
 # Routes
 
@@ -40,10 +39,10 @@ def index():
     image_list = GetData.decode(packages)
 
     #check username
-    if 'user_name' in session:
-        user_name = session['user_name']
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
     else:
-        user_name = None
+        user_fname = None
 
     if request.method == 'POST':
         search_term = request.form['destination']
@@ -53,9 +52,9 @@ def index():
 
         image_list2 = GetData.decode(filtered_packages)
 
-        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages, user_name=user_name)
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages, user_name=user_fname)
 
-    return render_template('index.html', packages=image_list, pagetitle="Home", user_name=user_name)
+    return render_template('index.html', packages=image_list, pagetitle="Home", user_name=user_fname)
 
 
 @app.route('/submit_booking', methods=['GET', 'POST'])
@@ -65,10 +64,10 @@ def submit_booking():
     packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
 
     #check username
-    if 'user_name' in session:
-        user_name = session['user_name']
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
     else:
-        user_name = None
+        user_fname = None
 
 
     if request.method == 'POST':
@@ -134,16 +133,16 @@ def submit_booking():
 
             # Flash a success message
             flash('Booking was successfully submitted')
-    return render_template('submit_booking.html', packages_submit=packages_submit, user_name=user_name)
+    return render_template('submit_booking.html', packages_submit=packages_submit, user_name=user_fname)
 
 
 @app.route('/packages')
 def packages():
     #check username
-    if 'user_name' in session:
-        user_name = session['user_name']
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
     else:
-        user_name = None
+        user_fname = None
     # all packages for the dropdown list
     packages_reg = GetData.all()
     packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
@@ -158,13 +157,35 @@ def packages():
         # decode image
         image_list2 = GetData.decode(filtered_packages)
 
-        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_name)
+        return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_fname)
 
-    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_name)
+    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_fname)
 
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    #check phone
+    if 'user_phone' in session:
+        user_phone = session['user_phone']
+    else:
+        user_phone = None
+    
+    #check email
+    if 'user_email' in session:
+        user_email = session['user_email']
+    else:
+        user_email = None
+    
+    #check fname and lname
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
+    else:
+        user_fname = None
+
+    if 'user_lname' in session:
+        user_lname = session['user_lname']
+    else:
+        user_lname = None
     #check username
     if 'user_name' in session:
         user_name = session['user_name']
@@ -206,16 +227,16 @@ def contact():
                 server.send_message(message)
 
        ######################## END Of Sending Email ###################
-    return render_template('contact.html', pagetitle="Contact Us", user_name=user_name)
+    return render_template('contact.html', pagetitle="Contact Us", user_name=user_name, user_email=user_email, user_phone=user_phone,  user_lname= user_lname,  user_fname= user_fname)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     #check username
-    if 'user_name' in session:
-        user_name = session['user_name']
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
     else:
-        user_name = None
+        user_fname = None
 
     if request.method == 'POST':
         if not request.form['f-name'] or not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['password'] or not request.form['username']:
@@ -226,27 +247,29 @@ def signup():
         else:
             #print("hello save user")
             user = User(
-            name=request.form['f-name'] +" "+request.form['l-name'],
+            fname=request.form['f-name'],
+            lname=request.form['l-name'],
             username=request.form['username'],
             email=request.form['email'],
             address="any thing",
             password=request.form['password'],
-            phone=request.form['phone']
+            phone=request.form['phone'],
+            is_admin=False
             )
             user.save()
             flash('Account created successfully. Please sign in.', 'success')
             return render_template('login.html', pagetitle="Login/Register")
     
-    return render_template('signup.html', pagetitle="Sign Up", user_name=user_name)
+    return render_template('signup.html', pagetitle="Sign Up", user_name=user_fname)
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     #check username
-    if 'user_name' in session:
-        user_name = session['user_name']
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
     else:
-        user_name = None
+        user_fname = None
 
     if request.method == 'POST':
         username = request.form['username']
@@ -254,8 +277,11 @@ def login():
         user = Data.get_user(username)
         if user and user.password == password:
             session['user_id'] = user.id
-            session['user_name'] = user.name
+            session['user_name'] = user.username
             session['user_email'] = user.email
+            session['user_phone'] = user.phone
+            session['user_fname'] = user.fname
+            session['user_lname'] = user.lname
             
             flash('Logged in successfully!', 'success')
             # all packages
@@ -263,10 +289,10 @@ def login():
             packages = sorted(packages, key=lambda k: k.package_name)
             # decode image
             image_list = GetData.decode(packages)
-            return render_template('index.html', packages=image_list, pagetitle="Home", user_name=user.name)
+            return render_template('index.html', packages=image_list, pagetitle="Home", user_name=user.fname)
         else:
             flash('Invalid username or password. Please try again.', 'error')
-    return render_template('login.html', pagetitle="Login/Register", user_name=user_name)
+    return render_template('login.html', pagetitle="Login/Register", user_name=user_fname)
 
 @app.route('/logout')
 def logout():
@@ -274,6 +300,9 @@ def logout():
     session.pop('user_id', None)
     session.pop('user_name', None)
     session.pop('user_email', None)
+    session.pop('user_phone', None)
+    session.pop('user_fname', None)
+    session.pop('user_lname', None)
     # all packages
     packages = GetData.all()
     packages = sorted(packages, key=lambda k: k.package_name)
