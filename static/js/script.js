@@ -1,16 +1,28 @@
 $(document).ready(function () {
     $('#signUpForm').on('submit', function (event) {
-        // const phoneNumber = $('#phone');
-        // if (typeof phoneNumber !== Number) {
-        //     event.preventDefault();
-        //     $('#phoneNumber').addClass('error');
-        //     $('#phoneNumber').after('<span class="error-message">Phone must be number.</span>');
+        // Prevent form submission
+        event.preventDefault();
 
-        // }
+        // Clear previous error messages
+        $('.error-message').remove();
+        $('.form-control').removeClass('error');
 
-
+        // Get form values
+        const firstName = $('#f-name').val().trim();
+        const lastName = $('#l-name').val().trim();
+        const email = $('#email').val().trim();
         const password = $('#password').val();
         const confirmPassword = $('#confirmPassword').val();
+
+
+
+        // Validate first name
+        if (!/^[a-zA-Z]+$/.test(firstName)) {
+            $('#firstName').addClass('error');
+            $('#firstName').after('<span class="error-message">First name must be a valid text.</span>');
+        }
+
+
 
         if (password !== confirmPassword) {
             event.preventDefault();
