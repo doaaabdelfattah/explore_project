@@ -30,7 +30,7 @@ $(document).ready(function () {
         }
 
         // Validate Phone number
-        const phonePattern = /^\d{13}$/;
+        const phonePattern = /^\d{5,}$/;
         if (!phonePattern.test(phone)) {
             $(formId + ' #phone').addClass('error');
             $(formId + ' #phone').after('<span class="error-message">Phone Number is not valid.</span>');
