@@ -112,7 +112,7 @@ def submit_booking():
             # Recipient email
 
             receiver_email1 = "alshimaa.mamdouh.abdelaziz@gmail.com"
-            receiver_email2 = "doaa.abdalfattah@gmail.com"
+            receiver_email2 = request.form['email']
             # Create a multipart message and set headers
             message1 = MIMEMultipart()
             message1["From"] = sender_email
@@ -219,9 +219,8 @@ def contact():
             sender_email = "booking.online.alx@gmail.com"
             password = "glbg hlkl mlts urat"  # using app password
             # Recipient email
-            print (request.form)
-
-            receiver_email = request.form['email']
+            
+            receiver_email = "alshimaa.mamdouh.abdelaziz@gmail.com"
             # Create a multipart message and set headers
             message = MIMEMultipart()
             message["From"] = sender_email
