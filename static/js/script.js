@@ -1,81 +1,100 @@
 $(document).ready(function () {
-    $('#signUpForm').on('submit', function (event) {
-        // Prevent form submission to handle validation first
-        event.preventDefault();
-
+    // Function to validate a form
+    function validateForm(formId) {
         // Clear previous error messages
-        $('.error-message').remove();
-        $('.form-control').removeClass('error');
+        $(formId + ' .error-message').remove();
+        $(formId + ' .form-control').removeClass('error');
 
         // Get form values
-        const firstName = $('#f-name').val().trim();
-        const lastName = $('#l-name').val().trim();
-        const email = $('#email').val().trim();
-        const phone = $('#email').val().trim();
-        const password = $('#password').val();
-        const confirmPassword = $('#confirmPassword').val();
+        const firstName = $(formId + ' #f-name').val().trim();
+        const lastName = $(formId + ' #l-name').val().trim();
+        const email = $(formId + ' #email').val().trim();
+        const phone = $(formId + ' #phone').val().trim();
+        const password = $(formId + ' #password').val();
+        const confirmPassword = $(formId + ' #confirmPassword').val();
 
         let hasErrors = false;
 
         // Validate first name
         if (!/^[a-zA-Z]+$/.test(firstName)) {
-            $('#f-name').addClass('error');
-            $('#f-name').after('<span class="error-message">First name must be a valid text.</span>');
+            $(formId + ' #f-name').addClass('error');
+            $(formId + ' #f-name').after('<span class="error-message">First name must be a valid text.</span>');
             hasErrors = true;
         }
 
         // Validate last name
         if (!/^[a-zA-Z]+$/.test(lastName)) {
-            $('#l-name').addClass('error');
-            $('#l-name').after('<span class="error-message">Last name must be a valid text.</span>');
+            $(formId + ' #l-name').addClass('error');
+            $(formId + ' #l-name').after('<span class="error-message">Last name must be a valid text.</span>');
             hasErrors = true;
         }
 
         // Validate Phone number
         const phonePattern = /^\d{13}$/;
         if (!phonePattern.test(phone)) {
-            $('#phone').addClass('error');
-            $('#phone').after('<span class="error-message">Phone Number is not valid.</span>');
+            $(formId + ' #phone').addClass('error');
+            $(formId + ' #phone').after('<span class="error-message">Phone Number is not valid.</span>');
             hasErrors = true;
         }
 
         // Validate email
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
-            $('#email').addClass('error');
-            $('#email').after('<span class="error-message">Email must be valid.</span>');
+            $(formId + ' #email').addClass('error');
+            $(formId + ' #email').after('<span class="error-message">Email must be valid.</span>');
             hasErrors = true;
         }
 
         // Validate password match
         if (password !== confirmPassword) {
-            $('#confirmPassword').addClass('error');
-            $('#confirmPassword').after('<span class="error-message">Passwords do not match. Please try again.</span>');
+            $(formId + ' #confirmPassword').addClass('error');
+            $(formId + ' #confirmPassword').after('<span class="error-message">Passwords do not match. Please try again.</span>');
             hasErrors = true;
         }
 
-        // If no errors, submit the form
-        if (!hasErrors) {
+        return !hasErrors;
+    }
+
+    $('#signUpForm').on('submit', function (event) {
+        event.preventDefault();
+
+        if (validateForm('#signUpForm')) {
             alert('Form submitted successfully!');
-            // You can proceed with form submission or AJAX call here
+            this.submit();
+        }
+    });
+
+    $('#contactForm').on('submit', function (event) {
+        event.preventDefault();
+
+        if (validateForm('#contactForm')) {
+            alert('Form submitted successfully!');
+            this.submit();
+        }
+    });
+
+    $('#bookingForm').on('submit', function (event) {
+        event.preventDefault();
+
+        if (validateForm('#bookingForm')) {
+            alert('Form submitted successfully!');
             this.submit();
         }
     });
 
     // Remove error styles and messages when the input fields are changed
-    $('#f-name, #l-name, #email, #password, #confirmPassword').on('input', function () {
+    $('#f-name, #l-name, #email, #phone, #password, #confirmPassword').on('input', function () {
         $(this).removeClass('error');
         $(this).next('.error-message').remove();
     });
 
-    // =========== Toggle Menu ====================
-    // Toggle menu functionality
-    $('.toggle-menu').click(function () {
+    // Toggle menu functionality using event delegation
+    $(document).on('click', '.toggle-menu', function () {
         $('.links-container').toggleClass('open');
     });
 
     // Optionally close the menu when a link is clicked
-    $('.links-container ul li a').click(function () {
+    $(document).on('click', '.links-container ul li a', function () {
         $('.links-container').removeClass('open');
     });
 });

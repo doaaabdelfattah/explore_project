@@ -1,163 +1,223 @@
 {% extends "base.html" %} {% block body %}
 <!-- =================== *** Start *** ==================== -->
 <div class="overlay booking">
+  <div class="container">
+    <!-- ======= Navigation Bar ========== -->
     <div class="container">
-        <!-- ======= Navigation Bar ========== -->
+      <header>
         <div class="container">
-            <header>
-                <div class="container">
-                    <a class="navbar-brand" href="/">
-                        <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy"></a>
-                    <nav>
-                        <i class="fas fa-bars toggle-menu"></i>
-                        <div class="links-container">
-                            <ul class="links">
-                                <li class=""><a href="/" class="my-nav-link">Home</a></li>
-                                <li class=""><a href="/packages" class="my-nav-link">Packages</a></li>
-                                <li class=""><a href="/submit_booking" class="my-nav-link">Book Now</a></li>
-                                <li class=""><a href="/contact" class="my-nav-link">Contact</a></li>
-                            </ul>
-                        </div>
+          <a class="navbar-brand" href="/">
+            <img
+              src="../static/images/logo.png"
+              height="50px"
+              alt="logo"
+              loading="lazy"
+          /></a>
+          <nav>
+            <i class="fas fa-bars toggle-menu"></i>
+            <div class="links-container">
+              <ul class="links">
+                <li class=""><a href="/" class="my-nav-link">Home</a></li>
+                <li class="">
+                  <a href="/packages" class="my-nav-link">Packages</a>
+                </li>
+                <li class="">
+                  <a href="/submit_booking" class="my-nav-link">Book Now</a>
+                </li>
+                <li class="">
+                  <a href="/contact" class="my-nav-link">Contact</a>
+                </li>
+              </ul>
+            </div>
 
-                        <div class="right-div">
-                            {% if user_name %}
-                            <div class="welcome-msg">Welcome, {{ user_name }}! </div>
-                            <div> <a href="{{ url_for('logout') }}"> <button class="submit-btn">
-                                        Log out
-                                    </button></a></div>
-                            {% else %}
-                            <a href="/login" class="submit-btn-a">
-                                <button class="submit-btn">
-                                    Sign in/Up
-                                </button>
-                            </a>
-                            {% endif %}
-                        </div>
-                    </nav>
-                </div>
-            </header>
-
+            <div class="right-div">
+              {% if user_name %}
+              <div class="welcome-msg">Welcome, {{ user_name }}!</div>
+              <div>
+                <a href="{{ url_for('logout') }}">
+                  <button class="submit-btn">Log out</button></a
+                >
+              </div>
+              {% else %}
+              <a href="/login" class="submit-btn-a">
+                <button class="submit-btn">Sign in/Up</button>
+              </a>
+              {% endif %}
+            </div>
+          </nav>
         </div>
+      </header>
+    </div>
 
-
-        <!-- Checkout form -->
-        <div class="col mt-6 bg-light checkout-form">
-            <!-- <form action=""{{ url_for('submit_booking') }}"" method="post" class="checkout"> -->
-            <form action="/submit_booking" method="post" class="checkout">
-                <h2> Choose your Package </h2>
-                <p class="form-text">
-                    Our team will contact you to assist in planning your next vacation. Our office hours are from 9
-                    AM to 5 PM, Sunday through Thursday.
-                </p>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="f-name">First Name</label>
-                        <input type="text" class="form-control" id="f-name" placeholder="First Name" name="f-name"
-                        value="{{user_fname}}" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="l-name">Last Name</label>
-                        <input type="text" class="form-control" id="l-name" placeholder="Last Name" name="l-name" value="{{user_lname}}">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="phone">Phone Number</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone" value="{{user_phone}}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{user_email}}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <!-- <label for="destination">Destination</label>
+    <!-- Checkout form -->
+    <div class="col mt-6 bg-light checkout-form">
+      <!-- <form action=""{{ url_for('submit_booking') }}"" method="post" class="checkout"> -->
+      <form
+        action="/submit_booking"
+        method="post"
+        class="checkout"
+        id="bookingForm"
+      >
+        <h2>Choose your Package</h2>
+        <p class="form-text">
+          Our team will contact you to assist in planning your next vacation.
+          Our office hours are from 9 AM to 5 PM, Sunday through Thursday.
+        </p>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="f-name">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="f-name"
+              placeholder="First Name"
+              name="f-name"
+              value="{{user_fname}}"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="l-name">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="l-name"
+              placeholder="Last Name"
+              name="l-name"
+              value="{{user_lname}}"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              placeholder="Phone"
+              name="phone"
+              value="{{user_phone}}"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+              name="email"
+              value="{{user_email}}"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <!-- <label for="destination">Destination</label>
                             <input type="text" class="form-control" id="destination" placeholder="Destination"
                                 name="destination" required> -->
-                        <label for="destination">Destination</label>
-                        <select class="form-control" id="destination" name="destination" required>
-                            <option value="" disabled selected>Select a destination</option>
-                            {% for package in packages_submit %}
-                            <option value="{{ package.id }}">{{ package.package_name }}</option>
-                            {% endfor %}
-                            <!-- Add more options as needed -->
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message / Notes to add </label>
-                    <textarea class="form-control" id="message" rows="6" name="message" required></textarea>
-                </div>
-                <input type="submit" value="Submit" class="submit-btn">
-            </form>
-
+            <label for="destination">Destination</label>
+            <select
+              class="form-control"
+              id="destination"
+              name="destination"
+              required
+            >
+              <option value="" disabled selected>Select a destination</option>
+              {% for package in packages_submit %}
+              <option value="{{ package.id }}">
+                {{ package.package_name }}
+              </option>
+              {% endfor %}
+              <!-- Add more options as needed -->
+            </select>
+          </div>
         </div>
-
+        <div class="form-group">
+          <label for="message">Message / Notes to add </label>
+          <textarea
+            class="form-control"
+            id="message"
+            rows="6"
+            name="message"
+            required
+          ></textarea>
+        </div>
+        <input type="submit" value="Submit" class="submit-btn" />
+      </form>
     </div>
+  </div>
 </div>
 
 <!-- ==================== Footer Section ===================== -->
 
 <div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy" />
-                <p class="text-footer">
-                    Quisque imperdiet sapien porttito the bibendum sellentesque the
-                    commodo erat acar accumsa lobortis, enim diam the nesuen.
-                </p>
-                <div class="social-icons">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-square-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <p class="title-footer">Quick links</p>
-                <ul class="quick-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/packages">Packages</a></li>
-                    <li><a href="/submit_booking">Book Now</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-                <!-- <div class="social-icons">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <img
+          src="../static/images/logo.png"
+          height="50px"
+          alt="logo"
+          loading="lazy"
+        />
+        <p class="text-footer">
+          Quisque imperdiet sapien porttito the bibendum sellentesque the
+          commodo erat acar accumsa lobortis, enim diam the nesuen.
+        </p>
+        <div class="social-icons">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-square-instagram"></i>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <p class="title-footer">Quick links</p>
+        <ul class="quick-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/packages">Packages</a></li>
+          <li><a href="/submit_booking">Book Now</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <!-- <div class="social-icons">
                       <i class="fa-brands fa-facebook"></i>
                       <i class="fa-brands fa-twitter"></i>
                       <i class="fa-brands fa-square-instagram"></i>
                       <i class="fa-brands fa-linkedin"></i>
                   </div> -->
+      </div>
+      <div class="col-lg-4">
+        <p class="title-footer">Get in touch</p>
+        <div class="contact-info">
+          <div class="item">
+            <div class="address row">
+              <i class="col-1 fa-solid fa-location-dot"></i>
+              <p class="col">
+                1616 Broadway NY, New York 10001 <br />United States of America.
+              </p>
             </div>
-            <div class="col-lg-4">
-                <p class="title-footer">Get in touch</p>
-                <div class="contact-info">
-                    <div class="item">
-                        <div class="address row">
-                            <i class="col-1 fa-solid fa-location-dot"></i>
-                            <p class="col">
-                                1616 Broadway NY, New York 10001 <br />United States of America.
-                            </p>
-                        </div>
-                        <div class="phone row">
-                            <i class="col-1 fa-solid fa-phone"></i>
-                            <p class="col phone">+1 203 123 0606</p>
-                        </div>
-                        <div class="email row">
-                            <i class="col-1 fa-solid fa-envelope"></i>
-                            <p class="col mail">info@hotel.com</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="phone row">
+              <i class="col-1 fa-solid fa-phone"></i>
+              <p class="col phone">+1 203 123 0606</p>
             </div>
+            <div class="email row">
+              <i class="col-1 fa-solid fa-envelope"></i>
+              <p class="col mail">info@hotel.com</p>
+            </div>
+          </div>
         </div>
-        <div class="container has-top-border">
-            <p class="copyright">© 2024 <span>EXplore</span> All Right Reserved</p>
-        </div>
+      </div>
     </div>
+    <div class="container has-top-border">
+      <p class="copyright">© 2024 <span>EXplore</span> All Right Reserved</p>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
