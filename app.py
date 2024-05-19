@@ -47,9 +47,7 @@ def index():
     if request.method == 'POST':
         search_term = request.form['destination']
         # Filter packages by name containing the search term
-        filtered_packages = [package for package in packages if search_term.lower(
-        ) in package.package_name.lower()]
-
+        filtered_packages = GetData.filtered(search_term)
         image_list2 = GetData.decode(filtered_packages)
 
         return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages, user_name=user_fname)
@@ -136,7 +134,7 @@ def submit_booking():
     return render_template('submit_booking.html', packages_submit=packages_submit, user_name=user_fname)
 
 
-@app.route('/packages')
+@app.route('/packages', methods=['GET', 'POST'])
 def packages():
     #check username
     if 'user_fname' in session:
@@ -146,20 +144,23 @@ def packages():
     # all packages for the dropdown list
     packages_reg = GetData.all()
     packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
+    image_list1 = []
     image_list2 = []
+    image_list1 = GetData.decode(packages_reg)
 
     if request.method == 'POST':
-        # take search item
         search_term = request.form['destination']
         # Filter packages by name containing the search term
         filtered_packages = GetData.filtered(search_term)
-
-        # decode image
         image_list2 = GetData.decode(filtered_packages)
+
+        if not filtered_packages:
+            image_list2 = image_list1
+
 
         return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_fname)
 
-    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=packages_reg, user_name=user_fname)
+    return render_template('packages.html', pagetitle="Packages", filtered_packages=image_list2, packages=image_list1, user_name=user_fname)
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -227,7 +228,7 @@ def contact():
                 server.send_message(message)
 
        ######################## END Of Sending Email ###################
-    return render_template('contact.html', pagetitle="Contact Us", user_name=user_name, user_email=user_email, user_phone=user_phone,  user_lname= user_lname,  user_fname= user_fname)
+    return render_template('contact.html', pagetitle="Contact Us", user_name=user_fname, user_email=user_email, user_phone=user_phone,  user_lname= user_lname,  user_fname= user_fname)
 
 
 @app.route('/signup', methods=['GET', 'POST'])

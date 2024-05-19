@@ -59,7 +59,7 @@
       <div class="col-12 search-bar">
         <form
           class="row align-items-center gx-3"
-          action=" "
+          action="/packages"
           method="post"
           role="search"
         >
@@ -73,16 +73,13 @@
           <div class="col-12 col-sm destination-select">
             <div class="group">
               <span class="fa fa-globe"></span>
-              <select name="destination" id="destination">
+              <select id="destination" name="destination" required>
                 <option value="" disabled selected>Select a destination</option>
                 {% for package in packages %}
-                <option value="{{ package.id }}">
+                <option value="{{ package.package_name }}">
                   {{ package.package_name }}
                 </option>
                 {% endfor %}
-                <!-- <option value="Italy">Italy</option>
-                                        <option value="France">France</option>
-                                        <option value="Egypt">Egypt</option> -->
               </select>
             </div>
           </div>
@@ -104,6 +101,7 @@
   <div class="cards-container">
     <!-- Card No. 1 -->
     <div class="content row">
+      {% set filtered_packages = filtered_packages or packages %}
       {% for package in filtered_packages %}
       <div class="col card product-card">
         <div class="image">
