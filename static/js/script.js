@@ -11,6 +11,7 @@ $(document).ready(function () {
         const firstName = $('#f-name').val().trim();
         const lastName = $('#l-name').val().trim();
         const email = $('#email').val().trim();
+        const phone = $('#email').val().trim();
         const password = $('#password').val();
         const confirmPassword = $('#confirmPassword').val();
 
@@ -27,6 +28,14 @@ $(document).ready(function () {
         if (!/^[a-zA-Z]+$/.test(lastName)) {
             $('#l-name').addClass('error');
             $('#l-name').after('<span class="error-message">Last name must be a valid text.</span>');
+            hasErrors = true;
+        }
+
+        // Validate Phone number
+        const phonePattern = /^\d{13}$/;
+        if (!phonePattern.test(phone)) {
+            $('#phone').addClass('error');
+            $('#phone').after('<span class="error-message">Phone Number is not valid.</span>');
             hasErrors = true;
         }
 
