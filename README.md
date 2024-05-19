@@ -17,7 +17,7 @@
   The Explore Project dynamically loads travel packages directly from the database. This feature ensures that users always have access to the latest packages and deals, enhancing the overall user experience by providing real-time data.
 - **Interactive Navigation**: Easy-to-use navigation bar with quick links to all major sections of the website.
 
-![Alt text](static/images/explore%20screenshot.jpg)
+![Alt text](static/images/final_screen.jpeg)
 
 ## 🚀 Getting Started
 
