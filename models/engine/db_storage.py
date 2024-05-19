@@ -1,7 +1,7 @@
 """
 dbStorage
 """
-import pyodbc  # for sql server
+#import pyodbc  # for sql server
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
