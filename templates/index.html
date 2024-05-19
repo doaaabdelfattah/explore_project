@@ -1,243 +1,237 @@
-{% extends "base.html" %}
-
-
-{% block body %}
+{% extends "base.html" %} {% block body %}
 <!-- =================== *** Start *** ==================== -->
-
-
-
 <div class="overlay-home overlay">
-    <div class="container">
-        <!-- =========== Navigation Bar (Fixed) ============= -->
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy"></a>
+  <!-- ======= Navigation Bar ========== -->
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <div class="container">
+    <header>
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img
+            src="../static/images/logo.png"
+            height="50px"
+            alt="logo"
+            loading="lazy"
+        /></a>
+        <nav>
+          <i class="fas fa-bars toggle-menu"></i>
+          <div class="links-container">
+            <ul class="links">
+              <li class=""><a href="/" class="my-nav-link">Home</a></li>
+              <li class="">
+                <a href="/packages" class="my-nav-link">Packages</a>
+              </li>
+              <li class="">
+                <a href="/submit_booking" class="my-nav-link">Book Now</a>
+              </li>
+              <li class="">
+                <a href="/contact" class="my-nav-link">Contact</a>
+              </li>
+            </ul>
+          </div>
 
-
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-                        <li class="nav-item"><a href="/packages" class="nav-link">Packages</a></li>
-                        <li class="nav-item"><a href="/submit_booking" class="nav-link">Book Now</a></li>
-                        <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-                    </ul>
-                    <div class="col-md-3 d-flex justify-content-end">
-                        {% if user_name %}
-                        <li>Welcome, {{ user_name }}!</li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                        {% else %}
-                        <a href="/login" class="submit-btn-a">
-                            <button class="submit-btn">
-                                Sign in/Up
-                            </button>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
+          <div class="right-div">
+            {% if user_name %}
+            <div class="welcome-msg">Welcome, {{ user_name }}!</div>
+            <div>
+              <a href="{{ url_for('logout') }}">
+                <button class="submit-btn">Log out</button></a
+              >
             </div>
+            {% else %}
+            <a href="/login" class="submit-btn-a">
+              <button class="submit-btn">Sign in/Up</button>
+            </a>
+            {% endif %}
+          </div>
         </nav>
+      </div>
+    </header>
+  </div>
+  <!-- ==================== Hero Section ===================== -->
+  <div class="hero-section container">
+    <div class="col-lg-8 col-sm-12">
+      <h1>Find the Perfect destination with us.</h1>
+      <div class="subtitle">Plan & book your perfect trip</div>
 
-    </div>
-    <!-- ==================== Hero Section ===================== -->
-    <div class="hero-section container">
-        <div class="col-lg-8 col-sm-12">
+      <!-- Search section -->
+      <div class="search-bar">
+        <form
+          class="row align-items-center"
+          action=" "
+          method="post"
+          role="search"
+        >
+          <!-- Part 1 -->
+          <div class="col-12 col-sm destination-input">
+            <input type="text" class="" name="stop" placeholder="Where to?" />
+          </div>
 
-            <h1> Find the Perfect
-                destination with us.
-            </h1>
-            <div class="subtitle">
-                Plan & book your perfect trip
-            </div>
+          <!-- Section 2 -->
 
-            <!-- Search section -->
-            <div class="search-bar ">
-                <form class="row align-items-center" action=" " method="post" role="search">
-                    <!-- Part 1 -->
-                    <div class="col-12 col-sm destination-input">
-                        <input type="text" class="" name="stop" placeholder="Where to?">
-                    </div>
-
-                    <!-- Section 2 -->
-
-                    <div class="col-12 col-sm destination-select">
-                        <div class="group">
-                            <span class="fa fa-globe"></span>
-                            <select id="destination" name="destination" required>
-                                <option value="" disabled selected>Select a destination</option>
-                                {% for package in packages %}
-                                <option value="{{ package.package_name }}">{{ package.package_name }}</option>
-                                {% endfor %}
-                                <!-- <option value="Italy">Italy</option>
+          <div class="col-12 col-sm destination-select">
+            <div class="group">
+              <span class="fa fa-globe"></span>
+              <select id="destination" name="destination" required>
+                <option value="" disabled selected>Select a destination</option>
+                {% for package in packages %}
+                <option value="{{ package.package_name }}">
+                  {{ package.package_name }}
+                </option>
+                {% endfor %}
+                <!-- <option value="Italy">Italy</option>
                                 <option value="France">France</option>
                                 <option value="Egypt">Egypt</option> -->
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <!-- Section 3 -->
-                    <div class="col-12 col-sm-auto search-button ">
-                        <button type="submit">
-                            <span class="fa fa-search"></span>
-                        </button>
-                    </div>
-                </form>
-
+              </select>
             </div>
-        </div>
+          </div>
+
+          <!-- Section 3 -->
+          <div class="col-12 col-sm-auto search-button">
+            <button type="submit">
+              <span class="fa fa-search"></span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
 <!-- ==================== Popular Packages Section ===================== -->
 <div class="container packages">
-    <h1 class="section-title">Featured Packages</h1>
-    <div class="cards-container">
-        <!-- Card No. 1 -->
-        <div class="row">
-            {% for package in packages[:3] %}
-            <div class="col-lg-4">
-                <div class="card product-card">
-                    <img class="image" src="data:image/jpeg;base64,{{ package.image }}" class="">
+  <h1 class="section-title">Featured Packages</h1>
+  <div class="cards-container">
+    <!-- Card No. 1 -->
+    <div class="row">
+      {% for package in packages[:3] %}
+      <div class="col-lg-4">
+        <div class="card product-card">
+          <img
+            class="image"
+            src="data:image/jpeg;base64,{{ package.image }}"
+            class=""
+          />
 
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>{{ package.package_name }}</strong></h5>
-                        <p class="card-text">{{ package.description1 }}</p>
-                    </div>
-                    <div class="row justify-content-around mb-3 align-items-center">
-                        <button class="btn submit-btn">Details</button>
-                        <h3 class="mb-0">{{ package.price }}</h3>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+          <div class="card-body">
+            <h5 class="card-title">
+              <strong>{{ package.package_name }}</strong>
+            </h5>
+            <p class="card-text">{{ package.description1 }}</p>
+          </div>
+          <div class="row justify-content-around mb-3 align-items-center">
+            <a href="/submit_booking" class="">
+              <button class="submit-btn">Book Now!</button>
+            </a>
+
+            <h3 class="mb-0">{{ package.price }}</h3>
+          </div>
         </div>
-
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 
 <!-- ==================== About Section ===================== -->
 <div class="about-section">
-    <h1 class="section-title"> Why Explore ? </h1>
-    <div class="container">
-        <div class="row align-items-center" id="about-us">
-            <div class='col-md-6 col-sm-12'>
-                <h2>We Provide Top Destinations Expecially For You Book Now and Enjoy!</h2>
+  <h1 class="section-title">Why Explore ?</h1>
+  <div class="container">
+    <div class="row align-items-center" id="about-us">
+      <div class="col-md-6 col-sm-12">
+        <h2>
+          We Provide Top Destinations Expecially For You Book Now and Enjoy!
+        </h2>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="review-box">
+          <p>TESTIMONIALS</p>
+          <h3>TRAVELERS REVIEWS</h3>
+          <div class="review-text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor
+              sit amet consectetur adipiscing elit pellentesque.
+            </p>
+            <h4>Jessica H. alan</h4>
+            <h5>Guest Review</h5>
+            <div class="icons">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
-            <div class=' col-md-6 col-sm-12'>
-                <div class="review-box">
-                    <p> TESTIMONIALS</p>
-                    <h3> TRAVELERS REVIEWS</h3>
-                    <div class="review-text">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Dolor sit amet consectetur adipiscing elit
-                            pellentesque.
-                        </p>
-                        <h4>
-                            Jessica H. alan
-                        </h4>
-                        <h5>
-                            Guest Review
-                        </h5>
-                        <div class='icons'>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+          </div>
         </div>
+      </div>
     </div>
-
+  </div>
 </div>
-
 
 <!-- ==================== Footer Section ===================== -->
 
 <div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 ">
-                <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy"></a>
-                <p class="text-footer">
-                    Quisque imperdiet sapien porttito the bibendum sellentesque the commodo erat acar accumsa lobortis,
-                    enim diam the nesuen.
-                </p>
-                <div class="social-icons">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-square-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                </div>
-
-            </div>
-            <div class="col-lg-4">
-                <p class="title-footer">
-                    Quick links
-                </p>
-                <ul class="quick-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/packages">Packages</a></li>
-                    <li><a href="/submit_booking">Book Now</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                </ul>
-                <!-- <div class="social-icons">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <img
+          src="../static/images/logo.png"
+          height="50px"
+          alt="logo"
+          loading="lazy"
+        />
+        <p class="text-footer">
+          Quisque imperdiet sapien porttito the bibendum sellentesque the
+          commodo erat acar accumsa lobortis, enim diam the nesuen.
+        </p>
+        <div class="social-icons">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-square-instagram"></i>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <p class="title-footer">Quick links</p>
+        <ul class="quick-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/packages">Packages</a></li>
+          <li><a href="/submit_booking">Book Now</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+        <!-- <div class="social-icons">
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-twitter"></i>
                     <i class="fa-brands fa-square-instagram"></i>
                     <i class="fa-brands fa-linkedin"></i>
                 </div> -->
-
+      </div>
+      <div class="col-lg-4">
+        <p class="title-footer">Get in touch</p>
+        <div class="contact-info">
+          <div class="item">
+            <div class="address row">
+              <i class="col-1 fa-solid fa-location-dot"></i>
+              <p class="col">
+                1616 Broadway NY, New York 10001 <br />United States of America.
+              </p>
             </div>
-            <div class="col-lg-4 ">
-                <p class="title-footer">
-                    Get in touch
-                </p>
-                <div class=" contact-info">
-                    <div class="item">
-                        <div class="address row">
-                            <i class=" col-1 fa-solid fa-location-dot"></i>
-                            <p class="col">1616 Broadway NY, New York 10001
-                                <br>United States of America.
-                            </p>
-                        </div>
-                        <div class="phone row">
-                            <i class="col-1 fa-solid fa-phone"></i>
-                            <p class="col phone">+1 203 123 0606</p>
-                        </div>
-                        <div class="email row">
-                            <i class="col-1 fa-solid fa-envelope"></i>
-                            <p class="col mail">info@hotel.com</p>
-
-                        </div>
-
-
-                    </div>
-                </div>
-
+            <div class="phone row">
+              <i class="col-1 fa-solid fa-phone"></i>
+              <p class="col phone">+1 203 123 0606</p>
             </div>
-
+            <div class="email row">
+              <i class="col-1 fa-solid fa-envelope"></i>
+              <p class="col mail">info@hotel.com</p>
+            </div>
+          </div>
         </div>
-        <div class="container has-top-border">
-            <p class="copyright">&copy; 2024 <span>EXplore</span> All Right Reserved</p>
-        </div>
-
+      </div>
     </div>
+    <div class="container has-top-border">
+      <p class="copyright">© 2024 <span>EXplore</span> All Right Reserved</p>
+    </div>
+  </div>
 </div>
 
-
-<script src="bootstrap/js/popper.min.js"></script>
-<script src="bootstrap/js/jquery-3.7.1.min.js"></script>
-<script src="bootstrap/js/bootstrap.js"></script>
 {% endblock %}
