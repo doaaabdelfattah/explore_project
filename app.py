@@ -42,7 +42,7 @@ def index():
     if 'user_fname' in session:
         user_fname = session['user_fname']
     else:
-        user_fname = None
+        user_fname = ""
 
     if request.method == 'POST':
         search_term = request.form['destination']
@@ -61,38 +61,30 @@ def submit_booking():
     if 'user_phone' in session:
         user_phone = session['user_phone']
     else:
-        user_phone = None
+        user_phone = ""
     
     #check email
     if 'user_email' in session:
         user_email = session['user_email']
     else:
-        user_email = None
+        user_email = ""
     
     #check fname and lname
     if 'user_fname' in session:
         user_fname = session['user_fname']
     else:
-        user_fname = None
+        user_fname = ""
 
     if 'user_lname' in session:
         user_lname = session['user_lname']
     else:
-        user_lname = None
-    #check username
-    if 'user_name' in session:
-        user_name = session['user_name']
-    else:
-        user_name = None
+        user_lname = ""
+    
     # all packages
     packages_submit = GetData.all()
     packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
 
-    #check username
-    if 'user_fname' in session:
-        user_fname = session['user_fname']
-    else:
-        user_fname = None
+    
 
 
     if request.method == 'POST':
@@ -167,7 +159,7 @@ def packages():
     if 'user_fname' in session:
         user_fname = session['user_fname']
     else:
-        user_fname = None
+        user_fname = ""
     # all packages for the dropdown list
     packages_reg = GetData.all()
     packages_reg = sorted(packages_reg, key=lambda k: k.package_name)
@@ -196,29 +188,29 @@ def contact():
     if 'user_phone' in session:
         user_phone = session['user_phone']
     else:
-        user_phone = None
+        user_phone = ""
     
     #check email
     if 'user_email' in session:
         user_email = session['user_email']
     else:
-        user_email = None
+        user_email = ""
     
     #check fname and lname
     if 'user_fname' in session:
         user_fname = session['user_fname']
     else:
-        user_fname = None
+        user_fname = ""
 
     if 'user_lname' in session:
         user_lname = session['user_lname']
     else:
-        user_lname = None
+        user_lname = ""
     #check username
     if 'user_name' in session:
         user_name = session['user_name']
     else:
-        user_name = None
+        user_name = ""
 
     if request.method == "POST":
         ############# Sending Email##########################
@@ -264,7 +256,7 @@ def signup():
     if 'user_fname' in session:
         user_fname = session['user_fname']
     else:
-        user_fname = None
+        user_fname = ""
 
     if request.method == 'POST':
         if not request.form['f-name'] or not request.form['f-name'] or not request.form['phone'] or not request.form['email'] or not request.form['password'] or not request.form['username']:
@@ -297,7 +289,7 @@ def login():
     if 'user_fname' in session:
         user_fname = session['user_fname']
     else:
-        user_fname = None
+        user_fname = ""
 
     if request.method == 'POST':
         username = request.form['username']
