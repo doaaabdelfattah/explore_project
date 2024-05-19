@@ -57,6 +57,33 @@ def index():
 
 @app.route('/submit_booking', methods=['GET', 'POST'])
 def submit_booking():
+    #check phone
+    if 'user_phone' in session:
+        user_phone = session['user_phone']
+    else:
+        user_phone = None
+    
+    #check email
+    if 'user_email' in session:
+        user_email = session['user_email']
+    else:
+        user_email = None
+    
+    #check fname and lname
+    if 'user_fname' in session:
+        user_fname = session['user_fname']
+    else:
+        user_fname = None
+
+    if 'user_lname' in session:
+        user_lname = session['user_lname']
+    else:
+        user_lname = None
+    #check username
+    if 'user_name' in session:
+        user_name = session['user_name']
+    else:
+        user_name = None
     # all packages
     packages_submit = GetData.all()
     packages_submit = sorted(packages_submit, key=lambda k: k.package_name)
@@ -131,7 +158,7 @@ def submit_booking():
 
             # Flash a success message
             flash('Booking was successfully submitted')
-    return render_template('submit_booking.html', packages_submit=packages_submit, user_name=user_fname)
+    return render_template('submit_booking.html', packages_submit=packages_submit, user_name=user_fname, user_email=user_email, user_phone=user_phone,  user_lname= user_lname,  user_fname= user_fname)
 
 
 @app.route('/packages', methods=['GET', 'POST'])
