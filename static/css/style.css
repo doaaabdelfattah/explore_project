@@ -424,10 +424,10 @@ input::placeholder {
 
 .footer .title-footer {
   text-transform: uppercase;
-  font-size: 20px;
+  font-size: 18px;
   width: fit-content;
-  letter-spacing: 6px;
-  font-weight: 800;
+  letter-spacing: 3px;
+  font-weight: 600;
   margin: 20px auto;
 }
 
@@ -544,11 +544,11 @@ input::placeholder {
 /* ========================== Sign up Page ============================== */
 
 .error {
-  border-color: rgb(167, 21, 21);
+  border-color: rgb(222, 25, 25);
 }
 
 .error-message {
-  color: rgb(167, 21, 21);
+  color: rgb(222, 25, 25);
   font-size: 12px;
   margin-top: 5px;
 }
