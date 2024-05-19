@@ -6,12 +6,7 @@
     <header>
       <div class="container">
         <a class="navbar-brand" href="/">
-          <img
-            src="../static/images/logo.png"
-            height="50px"
-            alt="logo"
-            loading="lazy"
-        /></a>
+          <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy" /></a>
         <nav>
           <i class="fas fa-bars toggle-menu"></i>
           <div class="links-container">
@@ -34,8 +29,7 @@
             <div class="welcome-msg">Welcome, {{ user_name }}!</div>
             <div>
               <a href="{{ url_for('logout') }}">
-                <button class="submit-btn">Log out</button></a
-              >
+                <button class="submit-btn">Log out</button></a>
             </div>
             {% else %}
             <a href="/login" class="submit-btn-a">
@@ -57,12 +51,7 @@
 
       <!-- Search section -->
       <div class="col-12 search-bar">
-        <form
-          class="row align-items-center gx-3"
-          action="/packages"
-          method="post"
-          role="search"
-        >
+        <form class="row align-items-center gx-3" action="/packages" method="post" role="search">
           <!-- Part 1 -->
           <div class="col-12 col-sm destination-input">
             <input type="text" class="" name="stop" placeholder="Where to?" />
@@ -100,25 +89,25 @@
 <div class="container packages all">
   <div class="cards-container">
     <!-- Card No. 1 -->
-    <div class="content row">
-      {% set filtered_packages = filtered_packages or packages %}
-      {% for package in filtered_packages %}
-      <div class="col card product-card">
-        <div class="image">
+    <div class="row">
+      {% set filtered_packages = filtered_packages or packages %} {% for package
+      in filtered_packages %}
+      <div class="col-lg-4">
+        <div class="card product-card">
           <img src="data:image/jpeg;base64,{{ package.image }}" class="" />
-        </div>
 
-        <div class="card-body">
-          <h5 class="card-title">
-            <strong>{{ package.package_name }}</strong>
-          </h5>
-          <p class="card-text">{{ package.description1 }}</p>
-        </div>
-        <div class="row justify-content-around mb-3 align-items-center">
-          <a href="/submit_booking" class="">
-            <button class="submit-btn">Book Now!</button>
-          </a>
-          <h3 class="mb-0">{{ package.price }}</h3>
+          <div class="card-body">
+            <h5 class="card-title">
+              <strong>{{ package.package_name }}</strong>
+            </h5>
+            <p class="card-text">{{ package.description1 }}</p>
+          </div>
+          <div class="row justify-content-around mb-3 align-items-center">
+            <a href="/submit_booking" class="">
+              <button class="submit-btn">Book Now!</button>
+            </a>
+            <h3 class="mb-0">{{ package.price }}</h3>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -133,12 +122,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
-        <img
-          src="../static/images/logo.png"
-          height="50px"
-          alt="logo"
-          loading="lazy"
-        />
+        <img src="../static/images/logo.png" height="50px" alt="logo" loading="lazy" />
         <p class="text-footer">
           Quisque imperdiet sapien porttito the bibendum sellentesque the
           commodo erat acar accumsa lobortis, enim diam the nesuen.
@@ -172,7 +156,8 @@
             <div class="address row">
               <i class="col-1 fa-solid fa-location-dot"></i>
               <p class="col">
-                1616 Broadway NY, New York 10001 <br />United States of America.
+                1616 Broadway NY, New York 10001 <br />United States of
+                America.
               </p>
             </div>
             <div class="phone row">
@@ -194,3 +179,4 @@
 </div>
 
 {% endblock %}
+</div>
