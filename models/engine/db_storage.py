@@ -33,11 +33,16 @@ class DBStorage:
     def __init__(self):
         """__init__"""
         # import PyMySQL
+        SQL_USER= 'porto_dev'
+        SQL_PASS= 'porto_dev_pwd'
+        SQL_HOST= 'localhost'
+        SQL_DB= 'explore_project_db'
+        ENV= 'test'
+        TYPE_STORAGE= 'db'
 
         # uri = 'mysql+pymysql://root@localhost/'+getenv('SQL_DB')
         # print('mysql+pymysql://{}:{}@{}/{}'.format(getenv('SQL_USER'),getenv('SQL_PASS'),getenv('SQL_HOST'),getenv('SQL_DB')))
-        self.__engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.format(
-            'porto_dev', 'porto_dev_pwd', 'localhost', 'explore_project_db', echo=True)
+        self.__engine = create_engine('mysql+pymysql://{}:{}@{}/{}'.format(SQL_USER, SQL_PASS,SQL_HOST, SQL_DB, echo=True))
 
         # self.__engine = create_engine(uri,echo=True)
         #if getenv('ENV') == 'test':
